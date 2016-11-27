@@ -1,0 +1,31 @@
+﻿<Application x:Class="Spec.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:spec="clr-namespace:Spec"
+             xmlns:converters="clr-namespace:ContentToggleButton.Converters;assembly=ContentToggleButton"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        
+        <ResourceDictionary>
+
+            <!--Get a reference to the window to establish View Context-->
+            <RelativeSource x:Key="View" Mode="FindAncestor" 
+                        AncestorType="{x:Type Window}" />
+
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--custom control-->
+                <!--<ResourceDictionary Source="pack://application:,,,/ContentToggleButton;component/Themes/Generic.xaml" />-->
+
+                <!--Local Style-->
+                <ResourceDictionary Source="pack://application:,,,/ButtonStyle.xaml" />
+
+                <!--<ResourceDictionary Source="pack://application:,,,/myButton.xaml" />-->
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+    </Application.Resources>
+
+</Application>
+
