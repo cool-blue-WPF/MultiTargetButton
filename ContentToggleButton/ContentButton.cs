@@ -24,12 +24,12 @@ namespace ContentToggleButton
 
 		public static readonly DependencyProperty
 			InitialStateProperty = DependencyProperty.Register(
-			"InitialState", typeof(bool), typeof(ContentButton),
+			"InitialState", typeof(bool?), typeof(ContentButton),
 			new PropertyMetadata(false));
 
-		public bool InitialState
+		public bool? InitialState
 		{
-			get { return (bool)GetValue(InitialStateProperty); }
+			get { return (bool?)GetValue(InitialStateProperty); }
 			set { SetValue(InitialStateProperty, value); }
 		}
 

@@ -2,9 +2,9 @@
 
 namespace ContentToggleButton
 {
-	internal interface IContent
+	public interface IContent
 	{
 		List<string> Options { get; set; }
-		bool InitialState { get; set; } 
+		bool? InitialState { get; set; } 
 	}
 }

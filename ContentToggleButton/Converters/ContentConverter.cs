@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
 namespace ContentToggleButton.Converters
@@ -15,14 +16,18 @@ namespace ContentToggleButton.Converters
 			try
 			{
 				var control = (IContent)values[2];
+				var toggle = control as ToggleButton;
 
 				var options = (values[0] == DependencyProperty.UnsetValue) || values[0] == null
 					?  control.Options 
 					: (List<string>)values[0];
 
-				var isChecked = values[1] == DependencyProperty.UnsetValue || values[1] == null
-					? control.InitialState
-					: (bool)values[1];
+				var isChecked = control.InitialState ?? (bool)values[1];
+
+				if (toggle != null)
+					toggle.IsChecked = isChecked;
+
+				control.InitialState = null;
 
 				return isChecked 
 					? options[0] ?? DependencyProperty.UnsetValue.ToString()
