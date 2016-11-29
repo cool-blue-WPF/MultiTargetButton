@@ -13,12 +13,7 @@ namespace ContentToggleButton.Converters
 		{
 			try
 			{
-				var control = (IContent)values[2];
-
-				var options = (values[0] == DependencyProperty.UnsetValue) || values[0] == null
-					?  control.Options 
-					: (List<string>)values[0];
-
+				var options = (List<string>)values[0];
 				var isChecked = (bool?)values[1];
 
 				return isChecked ?? false 
