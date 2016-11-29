@@ -19,14 +19,14 @@
                          Options="{Binding PlainButtonView.Options, 
                                     RelativeSource={StaticResource View}}" 
                          />
-        <!--<b:ContentToggle Name="clrToggle" Height="30" 
+        <b:ContentToggle Name="clrToggle" Height="30" 
                          />
         <b:ContentButton x:Name="clrPlain" Height="30" 
                          />
         <b:ContentToggle Name="DefToggleToggle" Height="30" 
                          />
         <b:ContentButton x:Name="DefPlain" Height="30" 
-                         />-->
+                         />
     </StackPanel>
 </Window>
 
