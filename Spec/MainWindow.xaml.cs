@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using ContentToggleButton;
 using ContentToggleButton.ViewModel;
 
 namespace Spec
@@ -10,25 +9,27 @@ namespace Spec
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public StaticButton MyToggleButton { get; set; }
+		public ButtonView ToggleButtonView { get; set; }
 
-		public StaticButton MyPlainButton { get; set; }
+		public ButtonView PlainButtonView { get; set; }
 
 		public MainWindow ()
 		{
-			// View Models
-			MyToggleButton = new StaticButton(new List<string>
-					{"bound Checked", "bound UnChecked"}, null);
-			MyPlainButton = new StaticButton("bound Button");
+			// View Models for xaml bindings
+			ToggleButtonView = new ButtonView(new List<string>
+					{"bound Checked", "bound UnChecked"}, true);
+			PlainButtonView = new ButtonView("bound Button");
 
 			InitializeComponent();
 
-			// CLR Bindings
-			StaticButton.Bind(clrToggle,
-				new List<string> { "clr Checked", "clr UnChecked" }, true);
-			StaticButton.Bind(clrPlain, "clr Button");
+			//// CLR Bindings
+			//ButtonView.Bind(clrToggle,
+			//	new List<string> { "clr Checked", "clr UnChecked" }, true);
+			//ButtonView.Bind(clrPlain, "clr Button");
+
+			Plain.Click += (s, e) => {
+				Toggle.IsEnabled = !Toggle.IsEnabled;
+			};
 		}
-
 	}
-
 }

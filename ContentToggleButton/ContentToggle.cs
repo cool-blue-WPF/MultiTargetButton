@@ -22,13 +22,21 @@ namespace ContentToggleButton
 			set { SetValue(OptionsProperty, value); }
 		}
 
-		public new bool? IsChecked
+		//Inherited
+		//public new bool? IsChecked
+
+		public new bool IsEnabled
 		{
-			get { return base.IsChecked; }
-			set { base.IsChecked = value; }
+			get { return base.IsEnabled; }
+			set
+			{
+				base.IsEnabled = value;
+				if (value && IsChecked == null)
+					IsChecked = false;
+			}
 		}
 
-		static ContentToggle()
+		static ContentToggle ()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentToggle),
 			   new FrameworkPropertyMetadata(typeof(ContentToggle)));

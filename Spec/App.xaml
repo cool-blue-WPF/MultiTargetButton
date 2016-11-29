@@ -1,11 +1,15 @@
 ﻿<Application x:Class="Spec.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:c="clr-namespace:ContentToggleButton.Converters;assembly=ContentToggleButton"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+
         <ResourceDictionary>
 
+            <!--Converters-->
+            <c:IsNullConverter x:Key="IsNullConverter" />
+            
             <!--Get a reference to the window to establish View Context-->
             <RelativeSource x:Key="View" Mode="FindAncestor" 
                         AncestorType="{x:Type Window}" />

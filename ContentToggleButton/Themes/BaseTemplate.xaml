@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:ContentToggleButton.Converters">
+    
     <ControlTemplate x:Key="ControlTemplate" TargetType="{x:Type ButtonBase}">
+        
         <ControlTemplate.Resources>
             <converters:ContentChecked x:Key="ContentChecked" />
         </ControlTemplate.Resources>
@@ -27,7 +29,6 @@
                             This will update initialy when Options is set and each time IsChecked changes-->
                         <Binding Path="Options" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="IsChecked" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                 </ContentPresenter.Content>
 
@@ -95,3 +96,4 @@
     </ControlTemplate>
 
 </ResourceDictionary>
+    

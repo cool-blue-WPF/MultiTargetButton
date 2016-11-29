@@ -3,7 +3,7 @@
 namespace ContentToggleButton.ViewModel
 {
 	
-	public class StaticButton
+	public class ButtonView
 	{
 		public List<string> Options { get; set; }
 		public bool? InitialState { get; set; }
@@ -25,12 +25,12 @@ namespace ContentToggleButton.ViewModel
 		
 		// VIEW MODEL CONSTRUCTORS
 
-		public StaticButton (List<string> options, bool? state0)
+		public ButtonView (List<string> options, bool? state0)
 		{
 			Options = options;
 			InitialState = state0;
 		}
-		public StaticButton (string label)
+		public ButtonView (string label)
 		{
 			Options = new List<string> {"", label};
 		}
