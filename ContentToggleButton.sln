@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentToggleButton", "ContentToggleButton\ContentToggleButton.csproj", "{2E5A66EF-C14D-4ABA-B5B4-0F79940567D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spec", "Spec\Spec.csproj", "{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCustomControlLibrary1", "WpfCustomControlLibrary1\WpfCustomControlLibrary1.csproj", "{A387A750-25BD-49A9-8742-2DC26D499C28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E5A66EF-C14D-4ABA-B5B4-0F79940567D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5A66EF-C14D-4ABA-B5B4-0F79940567D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5A66EF-C14D-4ABA-B5B4-0F79940567D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5A66EF-C14D-4ABA-B5B4-0F79940567D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A387A750-25BD-49A9-8742-2DC26D499C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A387A750-25BD-49A9-8742-2DC26D499C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A387A750-25BD-49A9-8742-2DC26D499C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A387A750-25BD-49A9-8742-2DC26D499C28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

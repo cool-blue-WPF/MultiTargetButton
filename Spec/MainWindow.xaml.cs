@@ -16,13 +16,15 @@ namespace Spec
 		public MainWindow ()
 		{
 			MyToggleButton = new StaticButton(new List<string> { "bound Checked", "bound UnChecked" }, true);
-
 			MyPlainButton = new StaticButton(new List<string> { "", "bound Button" });
 
 			InitializeComponent();
 
-			//StaticButton.Bind(clrToggleToggle, new List<string> { "clr Checked", "clr UnChecked" }, true);
-			//StaticButton.Bind(clrPlain, new List<string> { "", "clr Button" }, false);
+			MyToggleButton.Initialise(Toggle);
+			MyToggleButton.Initialise(Plain);
+
+			StaticButton.Bind(clrToggleToggle, new List<string> { "clr Checked", "clr UnChecked" }, true);
+			StaticButton.Bind(clrPlain, new List<string> { "", "clr Button" }, false);
 		}
 
 	}

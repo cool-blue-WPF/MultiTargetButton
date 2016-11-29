@@ -16,20 +16,14 @@ namespace ContentToggleButton.Converters
 			try
 			{
 				var control = (IContent)values[2];
-				var toggle = control as ToggleButton;
 
 				var options = (values[0] == DependencyProperty.UnsetValue) || values[0] == null
 					?  control.Options 
 					: (List<string>)values[0];
 
-				var isChecked = control.InitialState ?? (bool)values[1];
+				var isChecked = (bool?)values[1];
 
-				if (toggle != null)
-					toggle.IsChecked = isChecked;
-
-				control.InitialState = null;
-
-				return isChecked 
+				return isChecked ?? false 
 					? options[0] ?? DependencyProperty.UnsetValue.ToString()
 					: options[1] ?? DependencyProperty.UnsetValue.ToString();
 			}

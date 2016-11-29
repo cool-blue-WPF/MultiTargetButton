@@ -5,6 +5,6 @@ namespace ContentToggleButton
 	public interface IContent
 	{
 		List<string> Options { get; set; }
-		bool? InitialState { get; set; } 
+		bool? IsChecked { get; set; } 
 	}
 }

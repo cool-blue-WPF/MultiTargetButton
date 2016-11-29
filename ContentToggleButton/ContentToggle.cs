@@ -22,20 +22,11 @@ namespace ContentToggleButton
 			set { SetValue(OptionsProperty, value); }
 		}
 
-		public static readonly DependencyProperty
-			InitialStateProperty = DependencyProperty.Register(
-			"InitialState", typeof(bool?), typeof(ContentToggle),
-			new PropertyMetadata(false));
-
-		public bool? InitialState
+		public new bool? IsChecked
 		{
-			get { return (bool?)GetValue(InitialStateProperty); }
-			set { SetValue(InitialStateProperty, value); }
+			get { return base.IsChecked; }
+			set { base.IsChecked = value; }
 		}
-
-		//this also works for single set of value
-		//public bool InitialState { get; set; }
-		//public List<string> Options { get; set; }
 
 		static ContentToggle()
 		{
