@@ -5,16 +5,19 @@
         Title="MainWindow" Height="255" Width="222">
     
     <StackPanel Margin="20,20,20,20" Orientation="Vertical">
-        
-        <b:ContentToggle Name="Toggle" Height="30" 
+
+        <b:ContentToggle Name="Toggle" Height="30"
                          Options="{Binding MyToggleButton.Options, 
-                                    RelativeSource={StaticResource View}}" 
-                         />
+                                    RelativeSource={StaticResource View}}"
+                         IsChecked="{Binding MyToggleButton.InitialState, 
+                                    RelativeSource={StaticResource View}}"
+                         IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource Self}, 
+                                    TargetNullValue=False}" />
         <b:ContentButton x:Name="Plain" Height="30" 
                          Options="{Binding MyPlainButton.Options, 
                                     RelativeSource={StaticResource View}}" 
                          />
-        <b:ContentToggle Name="clrToggleToggle" Height="30" 
+        <b:ContentToggle Name="clrToggle" Height="30" 
                          />
         <b:ContentButton x:Name="clrPlain" Height="30" 
                          />
