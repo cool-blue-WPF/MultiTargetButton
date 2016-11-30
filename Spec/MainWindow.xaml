@@ -6,27 +6,25 @@
     
     <StackPanel Margin="20,20,20,20" Orientation="Vertical">
 
+        <!--Bind to VM-->
         <b:ContentToggle Name="Toggle" Height="30"
                          Options="{Binding ToggleButtonView.Options, 
                                     RelativeSource={StaticResource View}}"
-                         IsChecked="{Binding MyToggleButton.InitialState,
+                         IsChecked="{Binding ToggleButtonView.InitialState,
                                     Mode=OneWay,
-                                    RelativeSource={StaticResource View}}"
-                         IsEnabled="{Binding IsChecked, RelativeSource={RelativeSource Self},
-                                    Mode=OneTime,
-                                    Converter={StaticResource IsNullConverter}}" />
+                                    RelativeSource={StaticResource View}}" />
         <b:ContentButton x:Name="Plain" Height="30" 
                          Options="{Binding PlainButtonView.Options, 
-                                    RelativeSource={StaticResource View}}" 
-                         />
-        <b:ContentToggle Name="clrToggle" Height="30" 
-                         />
-        <b:ContentButton x:Name="clrPlain" Height="30" 
-                         />
-        <b:ContentToggle Name="DefToggleToggle" Height="30" 
-                         />
-        <b:ContentButton x:Name="DefPlain" Height="30" 
-                         />
+                                    RelativeSource={StaticResource View}}" />
+        
+        <!--Bound to from VM-->
+        <b:ContentToggle Name="clrToggle" Height="30" />
+        <b:ContentButton x:Name="clrPlain" Height="30" />
+        
+        <!--Accept default-->
+        <b:ContentToggle Name="DefToggleToggle" Height="30" />
+        <b:ContentButton x:Name="DefPlain" Height="30" />
+        
     </StackPanel>
 </Window>
 

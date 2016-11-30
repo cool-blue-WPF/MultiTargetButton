@@ -28,6 +28,11 @@ namespace ContentToggleButton
 			set { }
 		}
 
+		public void Bind(object options, object state0)
+		{
+			this.Options = new List<string> { "", (string)options };
+		}
+
 		static ContentButton ()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentButton),
