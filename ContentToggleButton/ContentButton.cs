@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 
 namespace ContentToggleButton
 {
 
-	public class ContentButton : Button, IContent
+	public class ContentButton : ButtonBase, IContent
 	{
 		private static readonly List<string> DefaultOptions =
 			new List<string> { "", "Button" };
