@@ -10,7 +10,7 @@
         <b:ContentToggle Name="Toggle" Height="30"
                          Options="{Binding ToggleButtonView.Options, 
                                     RelativeSource={StaticResource View}}"
-                         IsChecked="{Binding ToggleButtonView.InitialState,
+                         InitialState="{Binding ToggleButtonView.InitialState,
                                     Mode=OneWay,
                                     RelativeSource={StaticResource View}}" />
         <b:ContentButton x:Name="Plain" Height="30" 

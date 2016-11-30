@@ -17,7 +17,7 @@ namespace Spec
 		{
 			// View Models for xaml bindings
 			ToggleButtonView = new ButtonView(new List<string>
-					{"bound Checked", "bound UnChecked"}, true);
+					{"bound Checked", "bound UnChecked"}, null);
 			PlainButtonView = new ButtonView("bound Button");
 
 			InitializeComponent();

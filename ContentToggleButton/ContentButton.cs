@@ -28,7 +28,24 @@ namespace ContentToggleButton
 			set { }
 		}
 
-		public void Bind(object options, object state0)
+		//EVENTS
+
+		public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
+			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentButton));
+
+		public new event RoutedEventHandler Click
+		{
+			add { AddHandler(ClickEvent, value); }
+			remove { RemoveHandler(ClickEvent, value); }
+		}
+
+		void RaiseClickEvent (object o, RoutedEventArgs e)
+		{
+			RoutedEventArgs newEventArgs = new RoutedEventArgs(ContentButton.ClickEvent);
+			RaiseEvent(newEventArgs);
+		}
+
+		public void Bind (object options, object state0)
 		{
 			this.Options = new List<string> { "", (string)options };
 		}
@@ -37,6 +54,11 @@ namespace ContentToggleButton
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentButton),
 			   new FrameworkPropertyMetadata(typeof(ContentButton)));
+		}
+
+		public ContentButton()
+		{
+			base.Click += RaiseClickEvent;
 		}
 
 	}

@@ -8,6 +8,8 @@ namespace ContentToggleButton
 
 	public class ContentToggle : ToggleButton, IContent
 	{
+		//IContent interface
+
 		private static readonly List<string> DefaultOptions =
 			new List<string> { "Checked", "UnChecked" };
 
@@ -25,10 +27,40 @@ namespace ContentToggleButton
 		//Inherited
 		//public new bool? IsChecked
 
+		//EVENTS
+
+		public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
+			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentToggle));
+
+		public new event RoutedEventHandler Click
+		{
+			add { AddHandler(ClickEvent, value); }
+			remove { RemoveHandler(ClickEvent, value); }
+		}
+
+		void RaiseClickEvent (object o, RoutedEventArgs e)
+		{
+			RoutedEventArgs newEventArgs = new RoutedEventArgs(ContentToggle.ClickEvent);
+			RaiseEvent(newEventArgs);
+		}
+		
+		//SERVICES
+
 		public void Bind (object options, object state0)
 		{
 			this.Options = (List<string>)options;
-			this.IsChecked = (bool?)state0;
+			this.InitialState = (bool?)state0;
+		}
+
+		public static readonly DependencyProperty 
+			InitialStateProperty = DependencyProperty.Register(
+			"InitialState", typeof(bool?), typeof(ContentToggle), 
+			new PropertyMetadata(false));
+
+		public bool? InitialState
+		{
+			get { return (bool?) GetValue(InitialStateProperty); }
+			set { SetValue(InitialStateProperty, value); }
 		}
 
 		static ContentToggle ()
@@ -57,16 +89,22 @@ namespace ContentToggleButton
 		// Set button to dissabled state if InitialState of IsChecked is null
 		private void OnElementLoaded(object o, RoutedEventArgs e)
 		{
-			if (this.IsChecked == null)
+			if (this.InitialState == null)
 			{
 				this.IsEnabled = false;
 				this.IsChecked = false;
+			}
+			else
+			{
+				this.IsChecked = this.InitialState;
 			}
 		}
 
 		public ContentToggle()
 		{
 			this.Loaded += OnElementLoaded;
+			base.Click += RaiseClickEvent;
+
 		}
 	}
 }
