@@ -17,7 +17,7 @@ namespace Spec
 		{
 			// View Models for xaml bindings
 			ToggleButtonView = new ButtonView(new List<string>
-					{"bound Checked", "bound UnChecked"}, null);
+				{"bound Checked", "bound UnChecked"}, null);
 			PlainButtonView = new ButtonView("bound Button");
 
 			InitializeComponent();
@@ -27,9 +27,18 @@ namespace Spec
 				new List<string> { "clr Checked", "clr UnChecked" }, true);
 			ButtonView.Bind(clrPlain, "clr Button");
 
-			Plain.Click += (s, e) => {
+			Plain.Click += (s, e) =>
+			{
 				Toggle.IsEnabled = !Toggle.IsEnabled;
 			};
+			clrPlain.Click += (s, e) =>
+			{
+				clrToggle.IsEnabled = !clrToggle.IsEnabled;
+			};
+			//DefPlain.Click += (s, e) =>
+			//{
+			//	DefToggle.IsEnabled = !DefToggle.IsEnabled;
+			//};
 		}
 	}
 }

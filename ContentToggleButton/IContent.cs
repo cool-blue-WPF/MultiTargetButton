@@ -6,6 +6,8 @@ namespace ContentToggleButton
 	{
 		List<string> Options { get; set; }
 		bool? IsChecked { get; set; }
-		void Bind(object options, object state0);
+		bool IsEnabled { get; set; }
+		bool? IsPressed { get; set; }
+		void Bind (object options, object state0);
 	}
 }

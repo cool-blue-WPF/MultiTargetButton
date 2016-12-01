@@ -24,11 +24,31 @@ namespace ContentToggleButton
 			set { SetValue(OptionsProperty, value); }
 		}
 
-		//Inherited
-		//public new bool? IsChecked
+		public new bool? IsChecked
+		{
+			get { return (bool?)GetValue(IsCheckedProperty); }
+			set { SetCurrentValue(IsCheckedProperty, value); }
+		}
+
+		//Protective wrapper to stop setting a local value from replacing bindings
+		public new bool IsEnabled
+		{
+			get { return (bool)GetValue(IsEnabledProperty); }
+			set
+			{
+				SetCurrentValue(IsEnabledProperty, value);
+			}
+		}
+
+		public new bool? IsPressed
+		{
+			get { return (bool?)base.GetValue(IsPressedProperty); }
+			set { base.SetCurrentValue(IsPressedProperty, value); }
+		}
 
 		//EVENTS
 
+		//Click
 		public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
 			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentToggle));
 
@@ -40,7 +60,7 @@ namespace ContentToggleButton
 
 		void RaiseClickEvent (object o, RoutedEventArgs e)
 		{
-			RoutedEventArgs newEventArgs = new RoutedEventArgs(ContentToggle.ClickEvent);
+			RoutedEventArgs newEventArgs = new RoutedEventArgs(ClickEvent);
 			RaiseEvent(newEventArgs);
 		}
 		
@@ -52,17 +72,22 @@ namespace ContentToggleButton
 			this.InitialState = (bool?)state0;
 		}
 
+		//OTHER DPs
+
+		//Custom DP InitialState
 		public static readonly DependencyProperty 
 			InitialStateProperty = DependencyProperty.Register(
 			"InitialState", typeof(bool?), typeof(ContentToggle), 
 			new PropertyMetadata(false));
-
+		
 		public bool? InitialState
 		{
 			get { return (bool?) GetValue(InitialStateProperty); }
 			set { SetValue(InitialStateProperty, value); }
 		}
-
+		
+		//CONSTRUCTORS
+		
 		static ContentToggle ()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentToggle),
@@ -74,14 +99,22 @@ namespace ContentToggleButton
 		private static void IsEnabledPropertyChanged (
 			DependencyObject o, DependencyPropertyChangedEventArgs e)
 		{
-			var myToggleButton = (ContentToggle)o;
+			var tb = (ContentToggle)o;
 			var value = (bool) e.NewValue;
 
-			if ((bool)e.NewValue && !myToggleButton.IsChecked.HasValue)
+			if ((bool)e.NewValue && !tb.IsChecked.HasValue)
 			{
-				if (value && myToggleButton.IsChecked == null)
-					myToggleButton.IsChecked = false;
+				// If IsChecked is null when enable becomes true, set IsChecked to false
+				if (value && tb.IsChecked == null)
+					tb.IsChecked = false;
 			}
+		}
+
+		public ContentToggle ()
+		{
+			this.Loaded += OnElementLoaded;
+			base.Click += RaiseClickEvent;
+
 		}
 
 		//INITIAL STATE
@@ -98,13 +131,6 @@ namespace ContentToggleButton
 			{
 				this.IsChecked = this.InitialState;
 			}
-		}
-
-		public ContentToggle()
-		{
-			this.Loaded += OnElementLoaded;
-			base.Click += RaiseClickEvent;
-
 		}
 	}
 }

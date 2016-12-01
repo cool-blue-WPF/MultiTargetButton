@@ -28,6 +28,22 @@ namespace ContentToggleButton
 			set { }
 		}
 
+		//Protective wrapper to stop setting a local value from replacing bindings
+		public new bool IsEnabled
+		{
+			get { return (bool)GetValue(IsEnabledProperty); }
+			set
+			{
+				SetCurrentValue(IsEnabledProperty, value);
+			}
+		}
+
+		public new bool? IsPressed
+		{
+			get { return (bool?)base.GetValue(IsPressedProperty); }
+			set { base.SetCurrentValue(IsPressedProperty, value); }
+		}
+
 		//EVENTS
 
 		public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
