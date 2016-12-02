@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 using ContentToggleButton.ViewModel;
 
 namespace Spec
@@ -52,26 +56,33 @@ namespace Spec
 				{
 					CB.SetCurrentValue(ToggleButton.IsCheckedProperty, null);
 				}
-				//else
-				//{
-				//	CB.ClearValue(ToggleButton.IsCheckedProperty);
-				//}
 				cbBound = !cbBound;
 			};
 		}
 
+		void LogEvent (object o, RoutedEventArgs e, [CallerMemberName] string receiver = null)
+		{
+			Log.Text += String.Format(
+				"{4} from {0}\n\tRouted Event {1}\n\tSourced from {2} : {3}\n",
+				o.GetType().Name, e.RoutedEvent, e.Source.GetType().Name, 
+				((FrameworkElement)e.Source).Name, receiver);
+			Log.ScrollToEnd();
+		}
+
 		void PanelButtonClick (object o, RoutedEventArgs e)
 		{
-			Debug.Print("PanelButtonClick from {0}\tRouted Event {1}\tSourced from {2}", 
-				o.GetType().Name, e.RoutedEvent, e.Source.GetType().Name);
+			LogEvent(o,e);
 		}
 
 		void StyleClick (object o, RoutedEventArgs e)
 		{
-			Debug.Print("StyleClick from {0}\tSourced from {1}", 
-				o.GetType().Name, e.Source.GetType().Name);
+			LogEvent(o, e);
 		}
 
+		private void Log_Clear(object sender, MouseButtonEventArgs e)
+		{
+			((TextBox)sender).Clear();
+			e.Handled = true;
+		}
 	}
-
 }

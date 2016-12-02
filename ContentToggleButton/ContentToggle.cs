@@ -49,7 +49,7 @@ namespace ContentToggleButton
 		//EVENTS
 
 		//Click
-		public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
+		public new static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
 			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentToggle));
 
 		public new event RoutedEventHandler Click
