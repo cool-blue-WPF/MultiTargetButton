@@ -2,34 +2,126 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
-        Title="MainWindow" Height="265" Width="222" Background="Black">
+        Title="MainWindow" Height="337" Width="222" Background="Black">
     
-    <StackPanel Margin="20,20,20,20" Orientation="Vertical">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <EventSetter Event="Click" Handler="StyleClick"></EventSetter>
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <EventSetter Event="Click" Handler="StyleClick"></EventSetter>
+        </Style>
+        <Style TargetType="{x:Type ButtonBase}">
+            <EventSetter Event="Click" Handler="StyleClick"></EventSetter>
+        </Style>
+        <Style TargetType="{x:Type b:ContentButton}"  BasedOn="{StaticResource BaseStyle}">
+            <EventSetter Event="Click" Handler="StyleClick"></EventSetter>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel Name="Panel" Margin="20,20,20,20" Orientation="Vertical"
+                ButtonBase.Click="PanelButtonClick"
+                b:ContentButton.Click="PanelButtonClick"
+                >
 
         <!--Bind to VM-->
+        <b:ContentButton x:Name="Plain" Height="30" 
+                         Options="{Binding PlainButtonView.Options, 
+                                    RelativeSource={StaticResource View}}" />
+        
         <b:ContentToggle Name="Toggle" Height="30"
                          Options="{Binding ToggleButtonView.Options, 
                                     RelativeSource={StaticResource View}}"
                          InitialState="{Binding ToggleButtonView.InitialState,
                                     Mode=OneWay,
                                     RelativeSource={StaticResource View}}" />
-        <b:ContentButton x:Name="Plain" Height="30" 
-                         Options="{Binding PlainButtonView.Options, 
-                                    RelativeSource={StaticResource View}}" />
-        
+
         <!--Bound to from VM-->
         <b:ContentToggle Name="clrToggle" Height="30"  Margin="0,6,0,0"
                          IsEnabled="{Binding IsChecked, ElementName=DefToggle}"/>
         <b:ContentButton x:Name="clrPlain" Height="30" />
 
         <!--Accept default-->
-        <b:ContentToggle Name="DefToggle" Height="30" Margin="0,6,0,0"
+        <!--<b:ContentToggle Name="DefToggle" Height="30" Margin="0,6,0,0"
                          IsChecked="{Binding IsPressed, ElementName=DefPlain,
-                            Mode=OneWay}" />
+                            Mode=OneWay}" />-->
         <b:ContentButton x:Name="DefPlain" Height="30" />
 
+        <CheckBox Name="CB" Height="30"  Margin="0,6,0,0"
+                  
+                  Content="Bound to ^Button^"
+                  IsChecked="{Binding IsPressed, ElementName=DefPlain, Mode=OneWay}" BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />
+
+        <Button Name="cbButton" Height="30"  Margin="0,6,0,0"
+                Content="Toggle Binding" Foreground="#FFE61818"
+                ></Button>
+        
     </StackPanel>
 </Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
