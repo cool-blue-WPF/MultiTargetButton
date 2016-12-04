@@ -25,7 +25,12 @@ namespace ContentToggleButton.ViewModel
 		}
 		public ButtonView (string label)
 		{
-			Options = new List<string> {"", label};
+			Options = new List<string> {label};
+		}
+
+		public ButtonView()
+		{
+			
 		}
 	}
 }

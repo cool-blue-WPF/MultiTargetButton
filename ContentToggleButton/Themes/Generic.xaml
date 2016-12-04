@@ -1,19 +1,37 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:ContentToggleButton" >
+                    xmlns:local="clr-namespace:ContentToggleButton"
+                    xmlns:converters="clr-namespace:ContentToggleButton.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/ContentToggleButton;component/Themes/BaseTemplate.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style TargetType="{x:Type local:ContentToggle}">
+        <Style.Resources>
+            <converters:NoOppConverter x:Key="NoOppConverter" />
+            <converters:IsNullConverter x:Key="IsNullConverter" />
+        </Style.Resources>
+        <Style.Triggers>
+            
+            <DataTrigger
+                    Binding="{Binding IsChecked, 
+                    RelativeSource={RelativeSource Mode=Self}}"
+                    Value="{x:Null}">
+                <Setter Property="IsEnabled" Value="false" />
+                <Setter Property="IsChecked" Value="False" />
+            </DataTrigger>
+            
+        </Style.Triggers>
         <Setter Property="Template" Value="{StaticResource ControlTemplate}" />
     </Style>
-
 
     <Style TargetType="{x:Type local:ContentButton}">
         <Setter Property="Template" Value="{StaticResource ControlTemplate}" />
     </Style>
 
 </ResourceDictionary>
+    
+    
+    
     

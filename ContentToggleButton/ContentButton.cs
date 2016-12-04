@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using System.Windows.Data;
 
 
 namespace ContentToggleButton
@@ -9,7 +11,7 @@ namespace ContentToggleButton
 	public class ContentButton : ButtonBase, IContent
 	{
 		private static readonly List<string> DefaultOptions =
-			new List<string> { "", "Button" };
+			new List<string> { "Button", "" };
 
 		public static readonly DependencyProperty
 			OptionsProperty = DependencyProperty.Register(
@@ -22,6 +24,7 @@ namespace ContentToggleButton
 			set { SetValue(OptionsProperty, value); }
 		}
 
+		//stub for IContent
 		public bool? IsChecked
 		{
 			get { return null; }
@@ -29,6 +32,7 @@ namespace ContentToggleButton
 		}
 
 		//Protective wrapper to stop setting a local value from replacing bindings
+		//i.e. the binding can work in parallel with local setters 
 		public new bool IsEnabled
 		{
 			get { return (bool)GetValue(IsEnabledProperty); }
@@ -38,15 +42,22 @@ namespace ContentToggleButton
 			}
 		}
 
-		public new bool? IsPressed
+		//COMMANDS
+
+		public static readonly DependencyProperty TargetsProperty = 
+			DependencyProperty.Register(
+			"targets", typeof(IList), typeof(ContentButton), 
+			new PropertyMetadata(default(List<object>)));
+
+		public IList Targets
 		{
-			get { return (bool?)base.GetValue(IsPressedProperty); }
-			set { base.SetCurrentValue(IsPressedProperty, value); }
+			get { return (IList)GetValue(TargetsProperty); }
+			set { SetValue(TargetsProperty, value); }
 		}
 
 		//EVENTS
 
-		public static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
+		public new static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
 			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentButton));
 
 		public new event RoutedEventHandler Click
@@ -57,14 +68,18 @@ namespace ContentToggleButton
 
 		void RaiseClickEvent (object o, RoutedEventArgs e)
 		{
-			RoutedEventArgs newEventArgs = new RoutedEventArgs(ContentButton.ClickEvent);
+			RoutedEventArgs newEventArgs = new RoutedEventArgs(ClickEvent);
 			RaiseEvent(newEventArgs);
 		}
 
+		//Services
+
 		public void Bind (object options, object state0)
 		{
-			this.Options = new List<string> { "", (string)options };
+			this.Options = new List<string> { (string)options };
 		}
+
+		//Constructers
 
 		static ContentButton ()
 		{
@@ -75,6 +90,7 @@ namespace ContentToggleButton
 		public ContentButton()
 		{
 			base.Click += RaiseClickEvent;
+			Targets = new List<object>();
 		}
 
 	}

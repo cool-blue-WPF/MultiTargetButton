@@ -43,6 +43,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\OutputToggle.cs" />
+    <Compile Include="Converters\NoOpp.cs" />
     <Compile Include="Converters\IsNullConverter.cs" />
     <Compile Include="ViewModel\ButtonView.cs" />
     <Page Include="Themes\BaseTemplate.xaml">
