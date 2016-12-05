@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Input;
 
 
 namespace ContentToggleButton
@@ -42,6 +44,7 @@ namespace ContentToggleButton
 			}
 		}
 
+		
 		//COMMANDS
 
 		public static readonly DependencyProperty TargetsProperty = 
@@ -57,8 +60,10 @@ namespace ContentToggleButton
 
 		//EVENTS
 
-		public new static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
-			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentButton));
+		public new static readonly RoutedEvent ClickEvent = 
+			EventManager.RegisterRoutedEvent(
+			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), 
+			typeof(ContentButton));
 
 		public new event RoutedEventHandler Click
 		{
@@ -90,7 +95,7 @@ namespace ContentToggleButton
 		public ContentButton()
 		{
 			base.Click += RaiseClickEvent;
-			Targets = new List<object>();
+			Targets = new List<ContentControl>();
 		}
 
 	}

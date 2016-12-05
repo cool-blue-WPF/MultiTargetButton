@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -49,15 +50,6 @@ namespace Spec
 				clrToggle.IsEnabled = !clrToggle.IsEnabled;
 			};
 
-			var cbBound = true;
-			//cbButton.Click += (s, e) =>
-			//{
-			//	if (cbBound)
-			//	{
-			//		CB.SetCurrentValue(ToggleButton.IsCheckedProperty, null);
-			//	}
-			//	cbBound = !cbBound;
-			//};
 		}
 
 		private void LogEvent (object o, RoutedEventArgs e, [CallerMemberName] string receiver = null)
@@ -86,18 +78,76 @@ namespace Spec
 			e.Handled = true;
 		}
 
-		private void OnButtonPlay(object sender, ExecutedRoutedEventArgs e)
+		private bool ButtonPauseTargets (RoutedEventArgs e, 
+			Func<ToggleButton, bool> ex)
 		{
-			var cb = e.Source as ToggleButton;
-			var contentB = e.Source as ContentButton;
-			var contC = contentB.Targets[0] as ContentControl;
-			var target = contC.Content as ToggleButton;
+			var handled = false;
 
-			if (target == null) return;
-			var flag = target.IsChecked ?? false;
-			target.IsChecked = !flag;
-			e.Handled = true;
+			if (e.OriginalSource.GetType() == typeof(ContentButton))
+			{
+				var cb = e.OriginalSource as ContentButton;
+				var containers = cb.Targets as IList<ContentControl>;
+				if (containers == null || containers.Count == 0)
+				{
+					var target = e.OriginalSource as ToggleButton;
+					if (target == null) return false;
+					
+					handled = ex(target);
+				}
+				else
+				{
+					foreach (var container in containers)
+					{
+						var target = container.Content as ToggleButton;
+						if (target == null) continue;
+
+						handled = ex(target);
+					}
+				}
+			}
+			else
+			{
+				var target = e.OriginalSource as ToggleButton;
+				if (target == null) return false;
+				handled = ex(target);
+			}
+			
+			return handled;
 		}
 
+		private void OnButtonPause(object sender, ExecutedRoutedEventArgs e)
+		{
+			e.Handled = ButtonPauseTargets(e, delegate(ToggleButton target)
+			{
+				if (!target.IsEnabled) return false;
+				var flag = target.IsChecked ?? false;
+				target.IsChecked = !flag;
+				return true;
+			});
+		}
+
+		private void OnPauseCanExecute (object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.Handled = ButtonPauseTargets(e, delegate(ToggleButton target)
+			{
+				e.CanExecute = target.IsEnabled;
+				return e.CanExecute;
+			});
+		}
+
+		private void OnButtonStopExecuted(object sender, ExecutedRoutedEventArgs e)
+		{
+			e.Handled = ButtonPauseTargets(e, delegate(ToggleButton target)
+			{
+				var flag = target.IsEnabled;
+				target.IsEnabled = !flag;
+				return true;
+			});
+		}
+
+		private void OnCanExecute (object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+		}
 	}
 }

@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
-        xmlns:local="clr-namespace:Spec"
         Title="MainWindow" Height="686" Width="425" Background="Black">
 
     <Window.Resources>
@@ -30,10 +29,17 @@
                 ButtonBase.Click="PanelButtonClick"
                 b:ContentButton.Click="PanelButtonClick">
 
+        <StackPanel.CommandBindings>
+            <CommandBinding Command="Pause" Executed="OnButtonPause"
+                                CanExecute="OnPauseCanExecute" />
+            <CommandBinding Command="Stop" Executed="OnButtonStopExecuted"
+                                CanExecute="OnCanExecute" />
+        </StackPanel.CommandBindings>
+
         <!--Log Complex-->
         <StackPanel>
             <StackPanel.CommandBindings>
-                <CommandBinding Command="Paste" Executed="OnButtonPlay" />
+                <CommandBinding Command="Paste" Executed="OnButtonPause" />
             </StackPanel.CommandBindings>
             <ToolBar >
                 <Button Content="Copy" Command="Copy" />
@@ -64,41 +70,55 @@
 
         <b:ContentButton x:Name="Plain" Height="30"
                          Options="{Binding PlainButtonView.Options, 
-                                    RelativeSource={StaticResource View}}" />
+                                    RelativeSource={StaticResource View}}" 
+                         Command="Pause" CommandTarget="{Binding ElementName=Toggle}" />
 
         <!--Bound to from VM-->
-        <b:ContentToggle Name="clrToggle" Height="30" Margin="0,16,0,0"
-                         IsEnabled="{Binding IsChecked, ElementName=DefToggle}" />
-        <b:ContentButton x:Name="clrPlain" Height="30" />
+        <b:ContentToggle Name="clrToggle" Height="30" Margin="0,16,0,0" />
+        <b:ContentButton x:Name="clrPlain" Height="30" 
+                         Command="Pause" CommandTarget="{Binding ElementName=clrToggle}" />
 
         <!--Accept default-->
-        <b:ContentToggle Name="DefToggle" Height="30" Margin="0,16,0,0"
-                         IsChecked="{Binding IsPressed, ElementName=DefPlain,
-                            Mode=OneWay}" />
-        <StackPanel>
-            <StackPanel.CommandBindings>
-                <CommandBinding Command="Play" Executed="OnButtonPlay" />
-            </StackPanel.CommandBindings>
-            <ToolBar >
-                <Button Content="Play" Command="Play" 
-                    CommandTarget="{Binding ElementName=CB}"/>
-            </ToolBar>
-            <CheckBox x:Name="CB1" Height="30" Margin="6,0,0,0"
-                  VerticalAlignment="Center" VerticalContentAlignment="Center"
-                  BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />
-            <b:ContentButton x:Name="DefPlain" Height="30"
-                         Command="Play" >
-                <b:ContentButton.Targets>
-                    <ContentControl Content="{x:Reference Name=CB1}" />
-                    <ContentControl></ContentControl>
-                </b:ContentButton.Targets>
-            </b:ContentButton>
-        </StackPanel>
-        <b:ContentButton Name="cbButton" Height="30" Margin="0,16,0,0"
-                         Content="Toggle Binding" Foreground="#FFE61818" />
+        <b:ContentToggle Name="DefToggle" Height="30" Margin="0,16,0,0" />
 
-        <b:ContentButton x:Name="DefUncoupled" Height="30" Margin="0,16,0,0"
-                         ToolTip="Unbound Button" />
+        <StackPanel>
+
+            <ToolBar>
+                <Button Content="Pause" Command="Pause"
+                        CommandTarget="{Binding ElementName=CB}" />
+            </ToolBar>
+
+            <CheckBox x:Name="CB" Height="30" Margin="6,0,0,0"
+                      VerticalAlignment="Center" VerticalContentAlignment="Center"
+                      BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />
+
+            <b:ContentButton x:Name="DefPlain" Height="30"
+                             Command="Pause">
+
+                <b:ContentButton.Targets>
+                    <ContentControl Content="{x:Reference Name=CB}" />
+                    <ContentControl Content="{x:Reference Name=DefToggle}" />
+                </b:ContentButton.Targets>
+
+            </b:ContentButton>
+
+            <b:ContentButton Name="cbButton" Height="30" Margin="0,16,0,0"
+                             Content="Toggle Binding" Foreground="#FFE61818"
+                             Command="Stop" CommandTarget="{Binding ElementName=CB}" />
+
+        </StackPanel>
+
+        <b:ContentButton x:Name="DefEnable" Height="30" Margin="0,16,0,0"
+                         ToolTip="Unbound Button"
+                         Command="Stop">
+
+            <b:ContentButton.Targets>
+                <ContentControl Content="{x:Reference Name=Toggle}" />
+                <ContentControl Content="{x:Reference Name=clrToggle}" />
+            </b:ContentButton.Targets>
+
+        </b:ContentButton>
+        
         <ToggleButton x:Name="stdUncoupled" Height="30"
                       ToolTip="Unbound ToggleButton" />
 
