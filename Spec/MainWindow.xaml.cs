@@ -37,19 +37,6 @@ namespace Spec
 			ButtonView.Bind(clrToggle, new List<string> { "clr Checked", "clr UnChecked" }, 
 				null);
 			ButtonView.Bind(clrPlain, "clr Button");
-
-			//Button wiring
-
-			Plain.Click += (s, e) =>
-			{
-				Toggle.IsEnabled = !Toggle.IsEnabled;
-			};
-
-			clrPlain.Click += (s, e) =>
-			{
-				clrToggle.IsEnabled = !clrToggle.IsEnabled;
-			};
-
 		}
 
 		private void LogEvent (object o, RoutedEventArgs e, [CallerMemberName] string receiver = null)
@@ -78,7 +65,7 @@ namespace Spec
 			e.Handled = true;
 		}
 
-		private bool ButtonPauseTargets (RoutedEventArgs e, 
+		private static bool ButtonPauseTargets (RoutedEventArgs e, 
 			Func<ToggleButton, bool> ex)
 		{
 			var handled = false;

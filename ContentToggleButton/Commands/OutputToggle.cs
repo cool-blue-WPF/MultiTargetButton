@@ -5,38 +5,66 @@ namespace ContentToggleButton.Commands
 {
 	public class OutputToggle
 	{
+		static readonly RoutedUICommand _ex =
+			new RoutedUICommand("Toggle Target", "Ex", typeof(OutputToggle));
+
+		public static RoutedUICommand Ex
+		{
+			get { return _ex; }
+		}
+
 		public ToggleButton ToggleButton { get; set; }
-		public CommandBinding OutputToggleBinding { get; set; }
+		public CommandBinding OutputBinding { get; set; }
 
 		public OutputToggle (ToggleButton toggleButton)
 		{
 			ToggleButton = toggleButton;
 			
-			OutputToggleBinding = new CommandBinding(RoutedCommands.OutputToggleCommand,
+			OutputBinding = new CommandBinding(Ex,
 				delegate(object sender, ExecutedRoutedEventArgs args)
 				{
-					var flag = toggleButton.IsChecked ?? false;
-					toggleButton.IsChecked = !flag;
+					var flag = ToggleButton.IsChecked ?? false;
+					ToggleButton.IsChecked = !flag;
 					args.Handled = true;
 				},
 				delegate(object sender, CanExecuteRoutedEventArgs args)
 				{
-					args.CanExecute = toggleButton.IsEnabled;
+					args.CanExecute = ToggleButton.IsEnabled;
 				}
 			);
 		}
 	}
 
-	public static class RoutedCommands
+	public class OutputToggleEnabled
 	{
-		static readonly RoutedUICommand _outputToggleCommand =
-			new RoutedUICommand("Toggle Target", "OutputToggle", typeof(RoutedCommands));
+		static readonly RoutedUICommand _outputToggleEnabledCommand =
+			new RoutedUICommand("Toggle Target Enabled", "OutputToggleEnabled", 
+				typeof(OutputToggleEnabled));
 
-		public static RoutedUICommand OutputToggleCommand
+		public static RoutedUICommand OutputToggleEnabledCommand
 		{
-			get { return _outputToggleCommand; }
+			get { return _outputToggleEnabledCommand; }
 		}
 
+		public ToggleButton ToggleButton { get; set; }
+		public CommandBinding OutputBinding { get; set; }
 
+		public OutputToggleEnabled (ToggleButton toggleButton)
+		{
+			ToggleButton = toggleButton;
+
+			OutputBinding = new CommandBinding(OutputToggleEnabledCommand,
+				delegate(object sender, ExecutedRoutedEventArgs args)
+				{
+					var flag = toggleButton.IsEnabled;
+					toggleButton.IsChecked = !flag;
+					args.Handled = true;
+				},
+				delegate(object sender, CanExecuteRoutedEventArgs args)
+				{
+					args.CanExecute = true;
+				}
+			);
+		}
 	}
 }
