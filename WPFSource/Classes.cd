@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System.Windows.Input.RoutedCommand">
+    <Position X="3.75" Y="2.5" Width="2.5" />
+    <NestedTypes>
+      <Enum Name="System.Windows.Input.RoutedCommand.PrivateFlags">
+        <TypeIdentifier>
+          <NewMemberFileName>RoutedCommand.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>EQAAIACACAAKAIQlAEwABAQAAANCAAEAAAAEAACQAEA=</HashCode>
+      <FileName>RoutedCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Windows.Input.RoutedUICommand">
+    <Position X="3.75" Y="10" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAAACAAAAAA=</HashCode>
+      <FileName>RoutedUICommand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Input.CommandBinding">
+    <Position X="6.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAEAABAAEQAAAAAAAAgAAQFAAAAA=</HashCode>
+      <FileName>CommandBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Controls.Primitives.ButtonBase">
+    <Position X="0.5" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>CKhZAkAIAACAAAEIoERABaAHoxMCAACABEAAAAIAAog=</HashCode>
+      <FileName>ButtonBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.228" />
+  </Class>
+  <Class Name="System.Windows.Input.CommandManager">
+    <Position X="6.75" Y="4.5" Width="2.5" />
+    <NestedTypes>
+      <Class Name="System.Windows.Input.CommandManager.RequerySuggestedEventManager" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CommandManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIABQAAAAEkQMASAAICYAMJMAEAAgCAAggKAEACEgAI=</HashCode>
+      <FileName>CommandManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="System.Windows.Input.ICommand">
+    <Position X="3.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.Windows.Input.ICommandSource">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>ICommandSource.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.Windows.IInputElement">
+    <Position X="9.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BCgIwp8wMAMCiCiCIqmCAABgRAtAsYQACoBQEGCIBAg=</HashCode>
+      <FileName>IInputElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

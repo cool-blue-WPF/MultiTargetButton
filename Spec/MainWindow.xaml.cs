@@ -39,7 +39,8 @@ namespace Spec
 			ButtonView.Bind(clrPlain, "clr Button");
 		}
 
-		private void LogEvent (object o, RoutedEventArgs e, [CallerMemberName] string receiver = null)
+		private void LogEvent (object o, RoutedEventArgs e, 
+			[CallerMemberName] string receiver = null)
 		{
 			//return;
 			Log.Text += String.Format(

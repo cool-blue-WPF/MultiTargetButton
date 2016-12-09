@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentToggleButton", "Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spec", "Spec\Spec.csproj", "{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands", "Commands\Commands.csproj", "{0EA78835-4C7E-4DEC-8F4A-FD099E793107}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFSource", "WPFSource\WPFSource.csproj", "{80B09079-0D75-4E1A-921E-29E28029DA70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC4116A6-11C6-4AB9-8985-BCB901EE6E10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0EA78835-4C7E-4DEC-8F4A-FD099E793107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0EA78835-4C7E-4DEC-8F4A-FD099E793107}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0EA78835-4C7E-4DEC-8F4A-FD099E793107}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0EA78835-4C7E-4DEC-8F4A-FD099E793107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80B09079-0D75-4E1A-921E-29E28029DA70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B09079-0D75-4E1A-921E-29E28029DA70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B09079-0D75-4E1A-921E-29E28029DA70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B09079-0D75-4E1A-921E-29E28029DA70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

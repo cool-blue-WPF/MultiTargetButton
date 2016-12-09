@@ -33,8 +33,8 @@
         <StackPanel.CommandBindings>
             <!--<CommandBinding Command="Pause" Executed="OnButtonPause"
                                 CanExecute="OnPauseCanExecute" />-->
-            <!--<CommandBinding Command="Stop" Executed="OnButtonStopExecuted"
-                                CanExecute="OnCanExecute" />-->
+            <CommandBinding Command="Stop" Executed="OnButtonStopExecuted"
+                                CanExecute="OnCanExecute" />
         </StackPanel.CommandBindings>
 
         <!--Log Complex-->
@@ -42,6 +42,7 @@
             <StackPanel.CommandBindings>
                 <CommandBinding Command="Paste" Executed="OnButtonPause" />
             </StackPanel.CommandBindings>
+            
             <ToolBar >
                 <Button Content="Copy" Command="Copy" />
                 <Button Content="Cut" Command="Cut" />
@@ -107,14 +108,16 @@
 
             <b:ContentButton Name="cbButton" Height="30" Margin="0,16,0,0"
                              Content="Toggle Binding" Foreground="#FFE61818"
-                             Command="cmd:OutputToggleEnabled.OutputToggleEnabledCommand" 
+                             Command="cmd:OutputToggleEnabled.Ex" 
                              CommandTarget="{Binding ElementName=CB}" />
 
         </StackPanel>
 
         <b:ContentButton x:Name="DefEnable" Height="30" Margin="0,16,0,0"
-                         ToolTip="Unbound Button">
-            <b:ContentButton.Command/>
+                         ToolTip="Multi Toggle Button"
+                         Command="cmd:OutputToggle.Ex">
+            <!--<b:ContentButton.Command/> 
+       todo the control needs to intercept the command and disperse to the target list -->
 
             <b:ContentButton.Targets>
                 <ContentControl Content="{x:Reference Name=Toggle}" />
@@ -123,8 +126,5 @@
 
         </b:ContentButton>
         
-        <ToggleButton x:Name="stdUncoupled" Height="30"
-                      ToolTip="Unbound ToggleButton" />
-
     </StackPanel>
 </Window>

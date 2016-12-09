@@ -5,8 +5,41 @@ namespace ContentToggleButton.Commands
 {
 	public class OutputToggle
 	{
+		public OutputToggle (ToggleButton toggleButton)
+		{
+			ToggleButton = toggleButton;
+			
+			OutputBinding = new CommandBinding(Ex,
+				(sender, args) =>
+				{
+					var flag = ToggleButton.IsChecked ?? false;
+					ToggleButton.IsChecked = !flag;
+					args.Handled = true;
+				},
+				( sender, args) =>
+				{
+					args.CanExecute = true; // ToggleButton.IsEnabled;
+				}
+			);
+		}
+
+		public ToggleButton ToggleButton { get; set; }
+		public CommandBinding OutputBinding { get; set; }
+
 		static readonly RoutedUICommand _ex =
 			new RoutedUICommand("Toggle Target", "Ex", typeof(OutputToggle));
+
+		public static RoutedUICommand Ex
+		{
+			get { return _ex; }
+		}
+	}
+
+	public class OutputToggleEnabled
+	{
+		static readonly RoutedUICommand _ex =
+			new RoutedUICommand("Toggle Target Enabled", "Ex", 
+				typeof(OutputToggleEnabled));
 
 		public static RoutedUICommand Ex
 		{
@@ -16,51 +49,18 @@ namespace ContentToggleButton.Commands
 		public ToggleButton ToggleButton { get; set; }
 		public CommandBinding OutputBinding { get; set; }
 
-		public OutputToggle (ToggleButton toggleButton)
-		{
-			ToggleButton = toggleButton;
-			
-			OutputBinding = new CommandBinding(Ex,
-				delegate(object sender, ExecutedRoutedEventArgs args)
-				{
-					var flag = ToggleButton.IsChecked ?? false;
-					ToggleButton.IsChecked = !flag;
-					args.Handled = true;
-				},
-				delegate(object sender, CanExecuteRoutedEventArgs args)
-				{
-					args.CanExecute = ToggleButton.IsEnabled;
-				}
-			);
-		}
-	}
-
-	public class OutputToggleEnabled
-	{
-		static readonly RoutedUICommand _outputToggleEnabledCommand =
-			new RoutedUICommand("Toggle Target Enabled", "OutputToggleEnabled", 
-				typeof(OutputToggleEnabled));
-
-		public static RoutedUICommand OutputToggleEnabledCommand
-		{
-			get { return _outputToggleEnabledCommand; }
-		}
-
-		public ToggleButton ToggleButton { get; set; }
-		public CommandBinding OutputBinding { get; set; }
-
 		public OutputToggleEnabled (ToggleButton toggleButton)
 		{
 			ToggleButton = toggleButton;
 
-			OutputBinding = new CommandBinding(OutputToggleEnabledCommand,
-				delegate(object sender, ExecutedRoutedEventArgs args)
+			OutputBinding = new CommandBinding(Ex,
+				(sender, args) =>
 				{
 					var flag = toggleButton.IsEnabled;
 					toggleButton.IsChecked = !flag;
 					args.Handled = true;
 				},
-				delegate(object sender, CanExecuteRoutedEventArgs args)
+				(sender, args) =>
 				{
 					args.CanExecute = true;
 				}
