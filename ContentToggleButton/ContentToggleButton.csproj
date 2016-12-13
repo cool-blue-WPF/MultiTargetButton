@@ -43,6 +43,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CommandTarget.cs" />
+    <Compile Include="Commands\MultiTargetCommand.cs" />
     <Compile Include="Commands\OutputToggle.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,7 +85,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

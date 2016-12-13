@@ -3,10 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
         xmlns:cmd="clr-namespace:ContentToggleButton.Commands;assembly=ContentToggleButton"
+        xmlns:spec="clr-namespace:Spec"
+        xmlns:conv="clr-namespace:ContentToggleButton.Converters;assembly=ContentToggleButton"
         Title="MainWindow" Height="686" Width="425" Background="Black">
 
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
+        <conv:NoOppConverter x:Key="NoOpp"></conv:NoOppConverter>
+        <cmd:OutputToggle x:Key="OutputToggle"/>
+        <!--<Style TargetType="{x:Type Button}">
             <EventSetter Event="Click" Handler="StyleClick" />
         </Style>
         <Style TargetType="{x:Type ToggleButton}">
@@ -23,22 +27,21 @@
         </Style>
         <Style TargetType="{x:Type b:ContentToggle}" BasedOn="{StaticResource BaseStyle}">
             <EventSetter Event="Click" Handler="StyleClick" />
-        </Style>
+        </Style>-->
     </Window.Resources>
 
     <StackPanel Name="Panel" Margin="20,20,20,20" Orientation="Vertical"
-                ButtonBase.Click="PanelButtonClick"
-                b:ContentButton.Click="PanelButtonClick">
+                >
 
         <StackPanel.CommandBindings>
             <!--<CommandBinding Command="Pause" Executed="OnButtonPause"
                                 CanExecute="OnPauseCanExecute" />-->
-            <CommandBinding Command="Stop" Executed="OnButtonStopExecuted"
-                                CanExecute="OnCanExecute" />
+            <!--<CommandBinding Command="Stop" Executed="OnButtonStopExecuted"
+                                CanExecute="OnCanExecute" />-->
         </StackPanel.CommandBindings>
 
         <!--Log Complex-->
-        <StackPanel>
+        <!--<StackPanel>
             <StackPanel.CommandBindings>
                 <CommandBinding Command="Paste" Executed="OnButtonPause" />
             </StackPanel.CommandBindings>
@@ -61,7 +64,7 @@
                  ToolTip="Right-Click to Clear Text"
                  Background="{x:Null}"
                  PreviewMouseRightButtonUp="Log_Clear" />
-        </StackPanel>
+        </StackPanel>-->
         <!--Bind to VM-->
         <b:ContentToggle Name="Toggle" Height="30"
                          Options="{Binding ToggleButtonView.Options, 
@@ -83,20 +86,20 @@
                          CommandTarget="{Binding ElementName=clrToggle}" />
 
         <!--Accept default-->
-        <b:ContentToggle Name="DefToggle" Height="30" Margin="0,16,0,0" />
+        <!--<b:ContentToggle Name="DefToggle" Height="30" Margin="0,16,0,0" />-->
 
         <StackPanel>
 
-            <ToolBar>
+            <!--<ToolBar>
                 <Button Content="Pause" Command="cmd:OutputToggle.Ex"
                         CommandTarget="{Binding ElementName=CB}" />
             </ToolBar>
 
             <CheckBox x:Name="CB" Height="30" Margin="6,0,0,0"
                       VerticalAlignment="Center" VerticalContentAlignment="Center"
-                      BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />
+                      BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />-->
 
-            <b:ContentButton x:Name="DefPlain" Height="30"
+            <!--<b:ContentButton x:Name="DefPlain" Height="30"
                              Command="Pause">
 
                 <b:ContentButton.Targets>
@@ -104,27 +107,39 @@
                     <ContentControl Content="{x:Reference Name=DefToggle}" />
                 </b:ContentButton.Targets>
 
-            </b:ContentButton>
+            </b:ContentButton>-->
 
             <b:ContentButton Name="cbButton" Height="30" Margin="0,16,0,0"
+                             ToolTip="CommandTarget null"
                              Content="Toggle Binding" Foreground="#FFE61818"
                              Command="cmd:OutputToggleEnabled.Ex" 
-                             CommandTarget="{Binding ElementName=CB}" />
+                              />
 
         </StackPanel>
 
         <b:ContentButton x:Name="DefEnable" Height="30" Margin="0,16,0,0"
-                         ToolTip="Multi Toggle Button"
-                         Command="cmd:OutputToggle.Ex">
-            <!--<b:ContentButton.Command/> 
-       todo the control needs to intercept the command and disperse to the target list -->
+                         ToolTip="Multi Toggle Button" >
 
-            <b:ContentButton.Targets>
-                <ContentControl Content="{x:Reference Name=Toggle}" />
-                <ContentControl Content="{x:Reference Name=clrToggle}" />
-            </b:ContentButton.Targets>
+            <b:ContentButton.Command>
+
+                <cmd:MultiTargetCommand Command="cmd:OutputToggleEnabled.Ex" 
+                                        CommandParameter="Multi Target">
+                    
+                    <cmd:MultiTargetCommand.Targets>
+                        <cmd:CommandTarget Target="{Binding ElementName=Toggle, 
+                            Converter={StaticResource NoOpp},
+                            PresentationTraceSources.TraceLevel=High}" />
+                        <cmd:CommandTarget Target="{Binding ElementName=clrToggle}" />
+                    </cmd:MultiTargetCommand.Targets>
+                    
+                </cmd:MultiTargetCommand>
+                
+            </b:ContentButton.Command>
 
         </b:ContentButton>
-        
+        <Button Height="30"
+                Command="cmd:OutputToggleEnabled.Ex"
+                CommandTarget="{Binding ElementName=clrToggle}"/>
+
     </StackPanel>
 </Window>

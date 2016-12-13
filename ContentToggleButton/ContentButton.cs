@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 
 
 namespace ContentToggleButton
@@ -13,6 +8,7 @@ namespace ContentToggleButton
 
 	public class ContentButton : ButtonBase, IContent
 	{
+		#region IContent
 		private static readonly List<string> DefaultOptions =
 			new List<string> { "Button", "" };
 
@@ -44,90 +40,9 @@ namespace ContentToggleButton
 				SetCurrentValue(IsEnabledProperty, value);
 			}
 		}
-
+		#endregion
 		
-		//COMMANDS
-
-		public static readonly DependencyProperty TargetsProperty = 
-			DependencyProperty.Register(
-			"Targets", typeof(ObservableCollection<ContentControl>), 
-			typeof(ContentButton),
-			new PropertyMetadata(default(ObservableCollection<ContentControl>)));
-
-		public ObservableCollection<ContentControl> Targets
-		{
-			get { return (ObservableCollection<ContentControl>)GetValue(TargetsProperty); }
-			set { SetValue(TargetsProperty, value); }
-		}
-
-		private void refreshBindings (object sender,
-			NotifyCollectionChangedEventArgs eventArgs)
-		{
-			if (eventArgs.NewItems != null)
-			{
-				foreach (var newItem in eventArgs.NewItems)
-				{
-					
-				}
-			}
-			if (eventArgs.OldItems == null) return;
-			foreach (var oldItem in eventArgs.OldItems)
-			{
-					
-			}
-		}
-
-		private static bool ButtonPauseTargets(RoutedEventArgs e,
-			Func<ToggleButton, bool> ex)
-		{
-			var handled = false;
-
-			if (e.OriginalSource.GetType() == typeof(ContentButton))
-			{
-				var cb = e.OriginalSource as ContentButton;
-				var containers = cb.Targets as IList<ContentControl>;
-				if (containers == null || containers.Count == 0)
-				{
-					var target = e.OriginalSource as ToggleButton;
-					if (target == null) return false;
-
-					handled = ex(target);
-				}
-				else
-				{
-					foreach (var container in containers)
-					{
-						var target = container.Content as ToggleButton;
-						if (target == null) continue;
-
-						handled = ex(target);
-					}
-				}
-			}
-			else
-			{
-				var target = e.OriginalSource as ToggleButton;
-				if (target == null) return false;
-				handled = ex(target);
-			}
-
-			return handled;
-		}
-
-		private void commandTargets (object sender, ExecutedRoutedEventArgs e)
-		{
-			foreach (var target in Targets)
-			{
-				ButtonPauseTargets(e, delegate(ToggleButton tb)
-				{
-					CommandTarget = tb;
-					Command.Execute(null);
-					return true;
-				});
-			}
-		}
-
-		//EVENTS
+		#region EVENTS
 
 		public new static readonly RoutedEvent ClickEvent = 
 			EventManager.RegisterRoutedEvent(
@@ -145,15 +60,16 @@ namespace ContentToggleButton
 			RoutedEventArgs newEventArgs = new RoutedEventArgs(ClickEvent);
 			RaiseEvent(newEventArgs);
 		}
+		#endregion
 
 		//Services
 
 		public void Bind (object options, object state0)
 		{
-			this.Options = new List<string> { (string)options };
+			Options = new List<string> { (string)options };
 		}
 
-		//Constructers
+		#region Constructers
 
 		static ContentButton ()
 		{
@@ -164,9 +80,7 @@ namespace ContentToggleButton
 		public ContentButton()
 		{
 			base.Click += RaiseClickEvent;
-			Targets = new ObservableCollection<ContentControl>();
-			Command.Execute();
 		}
-
+		#endregion
 	}
 }

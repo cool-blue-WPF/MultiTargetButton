@@ -1,29 +1,33 @@
-﻿using System.Windows.Controls.Primitives;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace ContentToggleButton.Commands
 {
-	public class OutputToggle
+	public class OutputToggle : ICommand
 	{
-		public OutputToggle (ToggleButton toggleButton)
+		public OutputToggle ()
 		{
-			ToggleButton = toggleButton;
-			
 			OutputBinding = new CommandBinding(Ex,
 				(sender, args) =>
 				{
-					var flag = ToggleButton.IsChecked ?? false;
-					ToggleButton.IsChecked = !flag;
+					((ICommand)this).Execute(args.Parameter);
 					args.Handled = true;
 				},
-				( sender, args) =>
+				(sender, args) =>
 				{
-					args.CanExecute = true; // ToggleButton.IsEnabled;
+					args.CanExecute =
+						((ICommand)this).CanExecute(args.Parameter);
 				}
 			);
 		}
+		public OutputToggle (IInputElement target) : this()
+		{
+			Target = target;
+		}
 
-		public ToggleButton ToggleButton { get; set; }
+		public IInputElement Target { get; set; }
 		public CommandBinding OutputBinding { get; set; }
 
 		static readonly RoutedUICommand _ex =
@@ -33,9 +37,28 @@ namespace ContentToggleButton.Commands
 		{
 			get { return _ex; }
 		}
+
+		#region ICommand
+
+		bool ICommand.CanExecute (object parameter)
+		{
+			return true;
+		}
+
+		void ICommand.Execute (object parameter)
+		{
+			var target = Target as ToggleButton;
+			if (target == null) return;
+			var flag = target.IsChecked ?? false;
+			target.IsChecked = !flag;
+		}
+
+		public event EventHandler CanExecuteChanged;
+		
+		#endregion
 	}
 
-	public class OutputToggleEnabled
+	public class OutputToggleEnabled : ICommand
 	{
 		static readonly RoutedUICommand _ex =
 			new RoutedUICommand("Toggle Target Enabled", "Ex", 
@@ -49,22 +72,38 @@ namespace ContentToggleButton.Commands
 		public ToggleButton ToggleButton { get; set; }
 		public CommandBinding OutputBinding { get; set; }
 
-		public OutputToggleEnabled (ToggleButton toggleButton)
+		public OutputToggleEnabled ()
 		{
-			ToggleButton = toggleButton;
-
 			OutputBinding = new CommandBinding(Ex,
 				(sender, args) =>
 				{
-					var flag = toggleButton.IsEnabled;
-					toggleButton.IsChecked = !flag;
+					((ICommand)this).Execute(args.Parameter);
 					args.Handled = true;
 				},
 				(sender, args) =>
 				{
-					args.CanExecute = true;
+					args.CanExecute =
+						((ICommand)this).CanExecute(args.Parameter);
 				}
 			);
+		}
+
+		public OutputToggleEnabled (ToggleButton toggleButton) : this()
+		{
+			ToggleButton = toggleButton;
+		}
+
+		public bool CanExecute (object parameter)
+		{
+			return true;
+		}
+
+		public event EventHandler CanExecuteChanged;
+
+		public void Execute (object parameter)
+		{
+			var flag = ToggleButton.IsEnabled;
+			ToggleButton.IsEnabled = !flag;
 		}
 	}
 }
