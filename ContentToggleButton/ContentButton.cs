@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls.Primitives;
+using ContentToggleButton.Commands;
 
 
 namespace ContentToggleButton
 {
-
 	public class ContentButton : ButtonBase, IContent
 	{
 		#region IContent
@@ -62,6 +63,23 @@ namespace ContentToggleButton
 		}
 		#endregion
 
+		public static readonly DependencyProperty CommandProxy =
+			CommandProperty.AddOwner(typeof(ContentButton),
+			new FrameworkPropertyMetadata(CommandChangedCallback));
+
+		private static void CommandChangedCallback(DependencyObject d, 
+			DependencyPropertyChangedEventArgs e)
+		{
+			var multitarget = e.NewValue as MultiTargetCommand;
+			if (multitarget == null) return;
+
+			var b = d as ContentButton;
+			if (b == null) return;
+			b.AddLogicalChild(e.NewValue);
+		
+			if (e.OldValue == null) return;
+			b.RemoveLogicalChild(e.OldValue);
+		}
 		//Services
 
 		public void Bind (object options, object state0)

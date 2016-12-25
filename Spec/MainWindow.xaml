@@ -5,7 +5,7 @@
         xmlns:cmd="clr-namespace:ContentToggleButton.Commands;assembly=ContentToggleButton"
         xmlns:spec="clr-namespace:Spec"
         xmlns:conv="clr-namespace:ContentToggleButton.Converters;assembly=ContentToggleButton"
-        Title="MainWindow" Height="686" Width="425" Background="Black">
+        Title="MainWindow" Height="686" Width="425" Background="#38534D">
 
     <Window.Resources>
         <conv:NoOppConverter x:Key="NoOpp"></conv:NoOppConverter>
@@ -71,7 +71,8 @@
                                     RelativeSource={StaticResource View}}"
                          IsChecked="{Binding ToggleButtonView.InitialState,
                                     Mode=OneWay,
-                                    RelativeSource={StaticResource View}}" />
+                                    RelativeSource={StaticResource View}}"
+                         BorderBrush="#FF0DF021" />
 
         <b:ContentButton x:Name="Plain" Height="30"
                          Options="{Binding PlainButtonView.Options, 
@@ -80,7 +81,8 @@
                          CommandTarget="{Binding ElementName=Toggle}" />
 
         <!--Bound to from VM-->
-        <b:ContentToggle Name="clrToggle" Height="30" Margin="0,16,0,0" />
+        <b:ContentToggle x:Name="clrToggle" Height="30" Margin="0,16,0,0"
+                         BorderBrush="#FF0DF021" />
         <b:ContentButton x:Name="clrPlain" Height="30" 
                          Command="cmd:OutputToggle.Ex" 
                          CommandTarget="{Binding ElementName=clrToggle}" />
@@ -117,29 +119,27 @@
 
         </StackPanel>
 
-        <b:ContentButton x:Name="DefEnable" Height="30" Margin="0,16,0,0"
-                         ToolTip="Multi Toggle Button" >
+        <b:ContentButton x:Name="MultiEnable" Height="30" Margin="0,16,0,0"
+                         ToolTip="Multi Toggle Button" BorderBrush="#FFF00E0E" >
 
             <b:ContentButton.Command>
 
                 <cmd:MultiTargetCommand Command="cmd:OutputToggleEnabled.Ex" 
                                         CommandParameter="Multi Target">
                     
-                    <cmd:MultiTargetCommand.Targets>
-                        <cmd:CommandTarget Target="{Binding ElementName=Toggle, 
-                            Converter={StaticResource NoOpp},
-                            PresentationTraceSources.TraceLevel=High}" />
-                        <cmd:CommandTarget Target="{Binding ElementName=clrToggle}" />
-                    </cmd:MultiTargetCommand.Targets>
+                    <cmd:CommandTarget Target="{Binding ElementName=Toggle}" />
+                    <cmd:CommandTarget Target="{Binding ElementName=clrToggle}" />
                     
                 </cmd:MultiTargetCommand>
                 
             </b:ContentButton.Command>
-
+            <TextBlock Text="{Binding ElementName=ToggleEnable, Path=Content}"></TextBlock>
         </b:ContentButton>
-        <Button Height="30"
+        <Button x:Name="ToggleEnable" Height="30"
                 Command="cmd:OutputToggleEnabled.Ex"
-                CommandTarget="{Binding ElementName=clrToggle}"/>
+                CommandTarget="{Binding ElementName=clrToggle}">
+            <TextBlock Text="{Binding ElementName=MultiEnable, Path=ToolTip}"></TextBlock>
+        </Button>
 
     </StackPanel>
 </Window>

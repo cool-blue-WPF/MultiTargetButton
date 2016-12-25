@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ContentToggleButton.Commands
 {
 	//[ContentProperty("Targets")]
-	public class MultiTargetCommand : FrameworkElement, ICommand, ICommandSource
+	public class MultiTargetCommand : StackPanel, ICommand, ICommandSource
 	{
 		public MultiTargetCommand()
 		{
-			Targets = new ObservableCollection<CommandTarget>();
-			Targets.CollectionChanged +=Targets_CollectionChanged;
 		}
 
 		private class DistributorBinding
@@ -72,53 +68,12 @@ namespace ContentToggleButton.Commands
 		{
 			var source = this as ICommandSource;
 
-			foreach (var target in Targets)
+			foreach (var child in this.Children)
 			{
 				ExecuteCommand(source.Command, source.CommandParameter,
-					target.Target);
+					((CommandTarget) child).Target);
 			}
 		}
-
-		#region DP Targets
-
-		public static readonly DependencyProperty TargetsProperty =
-			DependencyProperty.Register(
-				"Targets", typeof(ObservableCollection<CommandTarget>),
-				typeof(ContentButton),
-				new PropertyMetadata(default(ObservableCollection<CommandTarget>)));
-
-		public ObservableCollection<CommandTarget> Targets
-		{
-			get
-			{
-				return (ObservableCollection<CommandTarget>) GetValue(TargetsProperty);
-			}
-			set { SetValue(TargetsProperty, value); }
-		}
-
-		private void Targets_CollectionChanged (object sender,
-			NotifyCollectionChangedEventArgs eventArgs)
-		{
-			if (eventArgs.NewItems != null)
-			{
-				foreach (var newItem in eventArgs.NewItems)
-				{
-					this.AddLogicalChild(newItem);
-				}
-			}
-			if (eventArgs.OldItems == null) return;
-			foreach (var oldItem in eventArgs.OldItems)
-			{
-				this.RemoveLogicalChild(oldItem);
-			}
-		}
-
-		protected override IEnumerator LogicalChildren
-		{
-			get { return Targets.GetEnumerator(); }
-		}
-
-		#endregion
 
 		#region ICommand
 
@@ -137,6 +92,9 @@ namespace ContentToggleButton.Commands
 		#endregion
 
 		#region ICommandSource
+
+		//todo make a bindable command class and use that for the command property
+		// maybe this just needs a DP Command property...
 
 		private ICommand _command;
 		public ICommand Command

@@ -1,11 +1,10 @@
-﻿using System.Dynamic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Markup;
 
 namespace ContentToggleButton.Commands
 {
 	[ContentProperty("Target")]
-	public class CommandTarget : DependencyObject
+	public class CommandTarget : FrameworkElement
 	{
 		public IInputElement Target
 		{
