@@ -41,9 +41,9 @@
         </StackPanel.CommandBindings>
 
         <!--Log Complex-->
-        <!--<StackPanel>
+        <StackPanel>
             <StackPanel.CommandBindings>
-                <CommandBinding Command="Paste" Executed="OnButtonPause" />
+                <!--<CommandBinding Command="Paste" Executed="OnButtonPause" />-->
             </StackPanel.CommandBindings>
             
             <ToolBar >
@@ -62,9 +62,8 @@
                  ToolTipService.ShowOnDisabled="true"
                  ToolTipService.IsEnabled="true"
                  ToolTip="Right-Click to Clear Text"
-                 Background="{x:Null}"
-                 PreviewMouseRightButtonUp="Log_Clear" />
-        </StackPanel>-->
+                 Background="{x:Null}"  />
+        </StackPanel>
         <!--Bind to VM-->
         <b:ContentToggle Name="Toggle" Height="30"
                          Options="{Binding ToggleButtonView.Options, 
@@ -88,40 +87,44 @@
                          CommandTarget="{Binding ElementName=clrToggle}" />
 
         <!--Accept default-->
-        <!--<b:ContentToggle Name="DefToggle" Height="30" Margin="0,16,0,0" />-->
+        <b:ContentToggle Name="DefToggle" Height="30" Margin="0,16,0,0" />
 
         <StackPanel>
 
-            <!--<ToolBar>
+            <ToolBar>
                 <Button Content="Pause" Command="cmd:OutputToggle.Ex"
                         CommandTarget="{Binding ElementName=CB}" />
             </ToolBar>
 
             <CheckBox x:Name="CB" Height="30" Margin="6,0,0,0"
                       VerticalAlignment="Center" VerticalContentAlignment="Center"
-                      BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />-->
+                      BorderBrush="#FFDA3B3B" Foreground="#FFDC1919" />
 
-            <!--<b:ContentButton x:Name="DefPlain" Height="30"
-                             Command="Pause">
+            <b:ContentButton x:Name="DefPlain" Height="30" >
 
-                <b:ContentButton.Targets>
-                    <ContentControl Content="{x:Reference Name=CB}" />
-                    <ContentControl Content="{x:Reference Name=DefToggle}" />
-                </b:ContentButton.Targets>
+                <b:ContentButton.Command>
 
-            </b:ContentButton>-->
+                    <cmd:MultiTargetCommand Command="cmd:OutputToggleEnabled.Ex" >
+                        
+                        <cmd:CommandTarget Target="{x:Reference Name=CB}" />
+                        <cmd:CommandTarget Target="{x:Reference Name=DefToggle}" />
+
+                    </cmd:MultiTargetCommand>
+                        
+                </b:ContentButton.Command>
+            </b:ContentButton>
 
             <b:ContentButton Name="cbButton" Height="30" Margin="0,16,0,0"
                              ToolTip="CommandTarget null"
                              Content="Toggle Binding" Foreground="#FFE61818"
-                             Command="cmd:OutputToggleEnabled.Ex" 
-                              />
+                             Command="cmd:OutputToggleEnabled.Ex" />
 
         </StackPanel>
 
         <b:ContentButton x:Name="MultiEnable" Height="30" Margin="0,16,0,0"
                          ToolTip="Multi Toggle Button" BorderBrush="#FFF00E0E" >
 
+            <TextBlock Text="{Binding ElementName=ToggleEnable, Path=Content}"></TextBlock>
             <b:ContentButton.Command>
 
                 <cmd:MultiTargetCommand Command="cmd:OutputToggleEnabled.Ex" 
@@ -129,11 +132,11 @@
                     
                     <cmd:CommandTarget Target="{Binding ElementName=Toggle}" />
                     <cmd:CommandTarget Target="{Binding ElementName=clrToggle}" />
-                    
+                    <cmd:CommandTarget Target="{Binding ElementName=ToggleEnable}" />
+
                 </cmd:MultiTargetCommand>
                 
             </b:ContentButton.Command>
-            <TextBlock Text="{Binding ElementName=ToggleEnable, Path=Content}"></TextBlock>
         </b:ContentButton>
         <Button x:Name="ToggleEnable" Height="30"
                 Command="cmd:OutputToggleEnabled.Ex"

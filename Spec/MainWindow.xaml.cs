@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using System.Windows;
-using ContentToggleButton.Commands;
 using ContentToggleButton.ViewModel;
 
 namespace Spec
@@ -33,25 +32,14 @@ namespace Spec
 				null);
 			ButtonView.Bind(clrPlain, "clr Button");
 
-			var log = "MultiEnable";
 			var children = LogicalTreeHelper.GetChildren(MultiEnable);
 			var i = 0;
-			foreach (var child in children)
-			{
-				log += string.Format("\nLogical Child {0} :\t{1}", i++, child.ToString());
-			}
+			var log = children.Cast<object>().Aggregate("MultiEnable", 
+					(current, child) => current 
+										+ string.Format("\nLogical Child {0} :\t{1}", 
+											i++, child.ToString()));
 
-			children = LogicalTreeHelper.GetChildren((FrameworkElement)MultiEnable);
-
-			log += "\nFrameworkElement";
-
-			foreach (var child in children)
-			{
-				log += string.Format("\nLogical Child {0} :\t{1}", i++, child.ToString());
-			}
 			Dispatcher.InvokeAsync(() => MessageBox.Show(log));
 		}
-
-
 	}
 }

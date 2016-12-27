@@ -6,12 +6,8 @@ using System.Windows.Input;
 namespace ContentToggleButton.Commands
 {
 	//[ContentProperty("Targets")]
-	public class MultiTargetCommand : StackPanel, ICommand, ICommandSource
+	public class MultiTargetCommand : ItemsControl, ICommand, ICommandSource
 	{
-		public MultiTargetCommand()
-		{
-		}
-
 		private class DistributorBinding
 		{
 			private CommandBinding _binding;
@@ -68,7 +64,7 @@ namespace ContentToggleButton.Commands
 		{
 			var source = this as ICommandSource;
 
-			foreach (var child in this.Children)
+			foreach (var child in this.Items)
 			{
 				ExecuteCommand(source.Command, source.CommandParameter,
 					((CommandTarget) child).Target);
@@ -116,5 +112,6 @@ namespace ContentToggleButton.Commands
 		}
 
 		#endregion
+
 	}
 }

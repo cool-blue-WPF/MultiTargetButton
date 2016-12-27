@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using ContentToggleButton.Commands;
@@ -42,7 +44,73 @@ namespace ContentToggleButton
 			}
 		}
 		#endregion
-		
+
+		#region Command
+
+		private Collection<object> _logicalChildren = 
+					(Collection<object>)null;
+
+		protected override IEnumerator LogicalChildren
+		{
+			get
+			{
+				if(_logicalChildren == null) return base.LogicalChildren;
+				return this._logicalChildren.GetEnumerator();
+			}
+		}
+
+		public static readonly DependencyProperty CommandProxy =
+			CommandProperty.AddOwner(typeof(ContentButton),
+			new FrameworkPropertyMetadata(CommandChangedCallback));
+
+		private static void CommandChangedCallback (DependencyObject d,
+			DependencyPropertyChangedEventArgs e)
+		{
+			var multitarget = e.NewValue as MultiTargetCommand;
+			if (multitarget == null) return;
+
+			var b = d as ContentButton;
+			if (b == null) return;
+
+			_changeLogicalMultiTargetCommand(b, e.OldValue, e.NewValue);
+
+			if (e.OldValue == null) return;
+			b.RemoveLogicalChild(e.OldValue);
+		}
+
+		private static void _changeLogicalMultiTargetCommand (ContentButton b, object oldValue,
+								object newValue)
+		{
+			var children = b._logicalChildren;
+			if (children != null)
+			{
+				if (children.Contains(oldValue))
+				{
+					children.Remove(oldValue);
+					children.Add(newValue);
+					return;
+				}
+				throw new InvalidOperationException("Only one MultiCommand can be set");
+			}
+
+			var baseChildren = b.LogicalChildren;
+			object content = null;
+			if (baseChildren != null && baseChildren.MoveNext())
+			{
+				content = baseChildren.Current;
+			}
+
+			b._logicalChildren = new Collection<object>();
+			if (content != null)
+				b._logicalChildren.Add(content);
+
+			b._logicalChildren.Add(newValue);
+
+			b.AddLogicalChild(newValue);
+		}
+
+		#endregion
+
 		#region EVENTS
 
 		public new static readonly RoutedEvent ClickEvent = 
@@ -63,23 +131,6 @@ namespace ContentToggleButton
 		}
 		#endregion
 
-		public static readonly DependencyProperty CommandProxy =
-			CommandProperty.AddOwner(typeof(ContentButton),
-			new FrameworkPropertyMetadata(CommandChangedCallback));
-
-		private static void CommandChangedCallback(DependencyObject d, 
-			DependencyPropertyChangedEventArgs e)
-		{
-			var multitarget = e.NewValue as MultiTargetCommand;
-			if (multitarget == null) return;
-
-			var b = d as ContentButton;
-			if (b == null) return;
-			b.AddLogicalChild(e.NewValue);
-		
-			if (e.OldValue == null) return;
-			b.RemoveLogicalChild(e.OldValue);
-		}
 		//Services
 
 		public void Bind (object options, object state0)
