@@ -69,7 +69,7 @@ namespace ContentToggleButton.Commands
 			get { return _ex; }
 		}
 
-		public ToggleButton ToggleButton { get; set; }
+		public UIElement Element { get; set; }
 		public CommandBinding OutputBinding { get; set; }
 
 		public OutputToggleEnabled ()
@@ -88,9 +88,9 @@ namespace ContentToggleButton.Commands
 			);
 		}
 
-		public OutputToggleEnabled (ToggleButton toggleButton) : this()
+		public OutputToggleEnabled (UIElement element) : this()
 		{
-			ToggleButton = toggleButton;
+			Element = element;
 		}
 
 		public bool CanExecute (object parameter)
@@ -98,12 +98,17 @@ namespace ContentToggleButton.Commands
 			return true;
 		}
 
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler CanExecuteChanged
+		{
+			add { CommandManager.RequerySuggested += value; }
+			remove { CommandManager.RequerySuggested -= value; }
+		}
 
+		// todo how to do this without direct references?
 		public void Execute (object parameter)
 		{
-			var flag = ToggleButton.IsEnabled;
-			ToggleButton.IsEnabled = !flag;
+			var flag = Element.IsEnabled;
+			Element.IsEnabled = !flag;
 		}
 	}
 }

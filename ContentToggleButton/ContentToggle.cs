@@ -12,7 +12,7 @@ namespace ContentToggleButton
 		private static readonly List<string> DefaultOptions =
 			new List<string> { "Checked", "UnChecked" };
 
-		//IContent interface
+		#region IContent interface
 
 		public static readonly DependencyProperty
 			OptionsProperty = DependencyProperty.Register(
@@ -32,7 +32,15 @@ namespace ContentToggleButton
 			set { base.SetCurrentValue(IsPressedProperty, value); }
 		}
 
-		//EVENTS
+		public void Bind (object options, object state0)
+		{
+			this.Options = (List<string>)options;
+			this.IsChecked = (bool?)state0;
+		}
+
+		#endregion
+
+		#region EVENTS
 
 		//Click
 		public new static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
@@ -49,16 +57,10 @@ namespace ContentToggleButton
 			var newEventArgs = new RoutedEventArgs(ClickEvent);
 			RaiseEvent(newEventArgs);
 		}
-		
-		//SERVICES
 
-		public void Bind (object options, object state0)
-		{
-			this.Options = (List<string>)options;
-			this.IsChecked = (bool?)state0;
-		}
+		#endregion
 
-		//CONSTRUCTORS
+		#region CONSTRUCTORS
 		
 		static ContentToggle ()
 		{
@@ -74,4 +76,6 @@ namespace ContentToggleButton
 			CommandBindings.Add(new OutputToggleEnabled(this).OutputBinding);
 		}
 	}
+
+		#endregion
 }

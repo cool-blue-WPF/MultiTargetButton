@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandTarget.cs" />
+    <Compile Include="Commands\CommandDistributor.cs" />
     <Compile Include="Commands\MultiTargetCommand.cs" />
     <Compile Include="Commands\OutputToggle.cs">
       <SubType>Code</SubType>
