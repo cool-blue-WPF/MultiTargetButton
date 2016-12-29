@@ -33,7 +33,7 @@ namespace Spec
 			ButtonView.Bind(clrPlain, "clr Button");
 
 			MultiEnable.CommandBindings
-				.Add(new OutputToggleEnabledImpl().OutputBinding(MultiEnable,
+				.Add(new OutputToggleEnabledImpl(MultiEnable,
 					Commands.OutputToggleEnabled));
 
 			//var children = LogicalTreeHelper.GetChildren(MultiEnable);

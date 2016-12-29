@@ -39,11 +39,12 @@ namespace ContentToggleButton
 
 		#endregion
 
-		#region EVENTS
+		#region RoutedEvent ClickEvent
 
-		//Click
 		public new static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
-			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(ContentToggle));
+			"Click", RoutingStrategy.Bubble, 
+			typeof(RoutedEventHandler), 
+			typeof(ContentToggle));
 
 		public new event RoutedEventHandler Click
 		{
@@ -53,8 +54,7 @@ namespace ContentToggleButton
 
 		private void RaiseClickEvent (object o, RoutedEventArgs e)
 		{
-			var newEventArgs = new RoutedEventArgs(ClickEvent);
-			RaiseEvent(newEventArgs);
+			RaiseEvent(new RoutedEventArgs(ClickEvent));
 		}
 
 		#endregion
@@ -71,9 +71,9 @@ namespace ContentToggleButton
 		{
 			base.Click += RaiseClickEvent;
 
-			CommandBindings.Add(new OutputToggleImpl().OutputBinding(this, 
+			CommandBindings.Add(new OutputToggleImpl(this, 
 				Commands.OutputToggle));
-			CommandBindings.Add(new OutputToggleEnabledImpl().OutputBinding(this,
+			CommandBindings.Add(new OutputToggleEnabledImpl(this,
 				Commands.OutputToggleEnabled));
 		}
 

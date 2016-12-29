@@ -1,28 +1,43 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 namespace ContentToggleButton
 {
-	public abstract class CommandImplBase : ICommand
+	public abstract class CommandImplBase : CommandBinding, ICommand, ISupportInitialize
 	{
 		public IInputElement Target { get; set; }
+		
+		public void BeginInit()
+		{
 
-		public CommandBinding OutputBinding(IInputElement target, RoutedUICommand cmd)
+		}
+
+		public void EndInit()
+		{
+			base.Executed += (sender, args) =>
+			{
+				((ICommand)this).Execute(args.Parameter);
+				args.Handled = true;
+			};
+			base.CanExecute += (sender, args) =>
+			{
+				args.CanExecute =
+					((ICommand)this).CanExecute(args.Parameter);
+			};
+		}
+
+		protected CommandImplBase()
+		{
+			
+		}
+
+		protected CommandImplBase (IInputElement target, RoutedUICommand cmd)
+			: base(cmd)
 		{
 			Target = target;
-			return new CommandBinding(cmd,
-				(sender, args) =>
-				{
-					((ICommand) this).Execute(args.Parameter);
-					args.Handled = true;
-				},
-				(sender, args) =>
-				{
-					args.CanExecute =
-						((ICommand) this).CanExecute(args.Parameter);
-				}
-			);
+			EndInit();
 		}
 
 		#region ICommand

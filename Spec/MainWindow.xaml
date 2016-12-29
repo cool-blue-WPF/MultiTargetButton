@@ -132,11 +132,17 @@
                          ToolTip="{Binding RelativeSource={RelativeSource Self},
                                     Path=Name}"
                          BorderBrush="#FFF00E0E" >
+            <!--<b:ContentButton.CommandBindings>
+                <b:OutputToggleEnabledImpl
+                                   Command="{x:Static b:Commands.OutputToggleEnabled}"
+                                   Target="{RelativeSource Self}" />
+            </b:ContentButton.CommandBindings>-->
 
             <TextBlock Text="{Binding ElementName=ToggleEnable, Path=Content}"></TextBlock>
             <b:ContentButton.Command>
 
-                <b:MultiTargetCommand Command="{x:Static b:Commands.OutputToggleEnabled}" 
+                <b:MultiTargetCommand 
+                    Command="{x:Static b:Commands.OutputToggleEnabled}" 
                                         CommandParameter="Multi Target">
 
                     <b:CommandTarget Target="{Binding ElementName=Toggle}" />
