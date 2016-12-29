@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ContentToggleButton.Commands
+namespace ContentToggleButton
 {
 	//[ContentProperty("Targets")]
 	public class MultiTargetCommand : ItemsControl, ICommand, ICommandSource
@@ -19,7 +19,7 @@ namespace ContentToggleButton.Commands
 
 		public void Execute(object parameter)
 		{
-			CommandDistributor.Distribute(this);
+			Commands.Distribute(this);
 		}
 
 		#endregion

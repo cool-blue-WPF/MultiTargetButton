@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
-using ContentToggleButton.Commands;
+using ContentToggleButton;
 using ContentToggleButton.ViewModel;
 
 namespace Spec
@@ -11,7 +10,7 @@ namespace Spec
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static List<string> CommandButton = new List<string>{"Coupled to CB"};
+		public static List<string> CommandButton = new List<string> {"Coupled to CB"};
 
 		public ButtonView ToggleButtonView { get; set; }
 
@@ -19,7 +18,7 @@ namespace Spec
 
 		public bool? InitialState = true;
 
-		public MainWindow ()
+		public MainWindow()
 		{
 			// View Models for xaml bindings
 			ToggleButtonView = new ButtonView(new List<string>
@@ -29,11 +28,13 @@ namespace Spec
 			InitializeComponent();
 
 			//// CLR Bindings
-			ButtonView.Bind(clrToggle, new List<string> { "clr Checked", "clr UnChecked" },
+			ButtonView.Bind(clrToggle, new List<string> {"clr Checked", "clr UnChecked"},
 				null);
 			ButtonView.Bind(clrPlain, "clr Button");
 
-			MultiEnable.CommandBindings.Add(new OutputToggleEnabled(MultiEnable).OutputBinding);
+			MultiEnable.CommandBindings
+				.Add(new OutputToggleEnabledImpl().OutputBinding(MultiEnable,
+					Commands.OutputToggleEnabled));
 
 			//var children = LogicalTreeHelper.GetChildren(MultiEnable);
 			//var i = 0;

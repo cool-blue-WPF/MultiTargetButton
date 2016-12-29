@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls.Primitives;
-using ContentToggleButton.Commands;
 
 
 namespace ContentToggleButton
@@ -72,10 +71,12 @@ namespace ContentToggleButton
 		{
 			base.Click += RaiseClickEvent;
 
-			CommandBindings.Add(new OutputToggle(this).OutputBinding);
-			CommandBindings.Add(new OutputToggleEnabled(this).OutputBinding);
+			CommandBindings.Add(new OutputToggleImpl().OutputBinding(this, 
+				Commands.OutputToggle));
+			CommandBindings.Add(new OutputToggleEnabledImpl().OutputBinding(this,
+				Commands.OutputToggleEnabled));
 		}
-	}
 
 		#endregion
+	}
 }

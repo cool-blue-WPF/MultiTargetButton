@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace ContentToggleButton.Commands
+namespace ContentToggleButton
 {
 	public class RelayCommand<T> : ICommand
 	{
