@@ -1,51 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
-  <Class Name="ContentToggleButton.CommandImplBase">
-    <Position X="5.5" Y="0.5" Width="2.75" />
+  <Class Name="ContentToggleButton.CommandBindBase">
+    <Position X="12.75" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAACAAQAAEAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Commands\CommandImplBase.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Commands\CommandBindBase.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="ContentToggleButton.Commands">
-    <Position X="4.25" Y="5.25" Width="5.5" />
+    <Position X="11.5" Y="5.75" Width="5.5" />
     <TypeIdentifier>
-      <HashCode>AIAAAAAAAAAAAABAAAAAAAAAAAAAAABCAAAAAgAAgAA=</HashCode>
+      <HashCode>AIAgAAAAAAAAAABAAAAAAAAAAAEAAABCAAAAAgAAgAA=</HashCode>
       <FileName>Commands\Commands.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContentToggleButton.CommandTarget">
-    <Position X="13" Y="0.5" Width="2.75" />
+    <Position X="8.25" Y="3.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Commands\CommandTarget.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContentToggleButton.MultiTargetCommand" BaseTypeListCollapsed="true">
-    <Position X="10" Y="0.5" Width="2.75" />
+    <Position X="8.25" Y="0.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAQAAEAABAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
       <FileName>Commands\MultiTargetCommand.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ContentToggleButton.OutputToggleImpl">
-    <Position X="4.25" Y="3.75" Width="2.5" />
+  <Class Name="ContentToggleButton.OutputToggleBind">
+    <Position X="11.5" Y="3.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Commands\OutputToggle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ContentToggleButton.OutputToggleEnabledImpl">
-    <Position X="7.25" Y="3.75" Width="2.5" />
+  <Class Name="ContentToggleButton.OutputToggleEnabledBind">
+    <Position X="14.5" Y="3.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Commands\OutputToggleEnable.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContentToggleButton.ContentButton" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="0.5" Width="3.25" />
+    <Position X="0.5" Y="0.5" Width="3.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -56,7 +55,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ContentToggleButton.ContentToggle" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="4.75" Width="3.25" />
+    <Position X="4.25" Y="0.5" Width="3.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -67,27 +66,36 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ContentToggleButton.Converters.ContentConverter" BaseTypeListCollapsed="true">
-    <Position X="0.5" Y="8.25" Width="3.25" />
+    <Position X="4.25" Y="10.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Converters\ContentConverter.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="ContentToggleButton.RelayCommand&lt;T&gt;">
-    <Position X="16.5" Y="0.5" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAABAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
-      <FileName>Commands\RelayCommand.cs</FileName>
-    </TypeIdentifier>
+  <Class Name="System.Windows.Controls.Primitives.ButtonBase">
+    <Position X="0.5" Y="4.75" Width="3.5" />
+    <TypeIdentifier />
     <Lollipop Position="0.2" />
   </Class>
+  <Class Name="System.Windows.Controls.Primitives.ToggleButton">
+    <Position X="4.25" Y="4.75" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
   <Interface Name="ContentToggleButton.IContent">
-    <Position X="0.5" Y="9.75" Width="3.25" />
+    <Position X="4.25" Y="12" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAAABAAAg=</HashCode>
       <FileName>IContent.cs</FileName>
     </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.Windows.Input.ICommandSource">
+    <Position X="18" Y="9" Width="2.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.Windows.Input.ICommand">
+    <Position X="21" Y="9" Width="2.5" />
+    <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

@@ -5,6 +5,8 @@ namespace ContentToggleButton
 {
 	public static class Commands
 	{
+		#region RoutedCommands
+
 		#region RoutedUICommand OutputToggle
 
 		private static readonly RoutedUICommand outputToggle =
@@ -29,6 +31,38 @@ namespace ContentToggleButton
 		}
 
 		#endregion
+
+		#endregion
+
+		#region Agregate CanExecute
+
+		public static bool QueryCanExecute(MultiTargetCommand multiTargetCommand)
+		{
+			var source = multiTargetCommand as ICommandSource;
+
+			var canExecute = false;
+
+			foreach (var child in multiTargetCommand.Items)
+			{
+				canExecute |= CanExecuteCommand(source.Command, source.CommandParameter,
+					((CommandTarget) child).Target);
+			}
+
+			return canExecute;
+		}
+
+		public static bool CanExecuteCommand(ICommand command, object parameter,
+			IInputElement target)
+		{
+			var routedCommand = command as RoutedCommand;
+			return routedCommand != null
+				? routedCommand.CanExecute(parameter, target)
+				: command.CanExecute(parameter);
+		}
+
+		#endregion
+
+		#region Agregate Execute
 
 		public static void Distribute(MultiTargetCommand multiTargetCommand)
 		{
@@ -58,5 +92,7 @@ namespace ContentToggleButton
 				command.Execute(parameter);
 			}
 		}
+
+		#endregion
 	}
 }

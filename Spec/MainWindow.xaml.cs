@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Windows;
-using ContentToggleButton;
 using ContentToggleButton.ViewModel;
 
 namespace Spec
@@ -32,9 +31,8 @@ namespace Spec
 				null);
 			ButtonView.Bind(clrPlain, "clr Button");
 
-			MultiEnable.CommandBindings
-				.Add(new OutputToggleEnabledImpl(MultiEnable,
-					Commands.OutputToggleEnabled));
+			//MultiEnable.CommandBindings
+			//	.Add(new OutputToggleEnabledBind());
 
 			//var children = LogicalTreeHelper.GetChildren(MultiEnable);
 			//var i = 0;

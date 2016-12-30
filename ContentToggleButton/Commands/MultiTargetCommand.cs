@@ -5,17 +5,21 @@ using System.Windows.Input;
 
 namespace ContentToggleButton
 {
-	//[ContentProperty("Targets")]
+
 	public class MultiTargetCommand : ItemsControl, ICommand, ICommandSource
 	{
 		#region ICommand
 
 		public bool CanExecute(object parameter)
 		{
-			return true;
+			return Commands.QueryCanExecute(this);
 		}
 
-		public event EventHandler CanExecuteChanged;
+		public event EventHandler CanExecuteChanged
+		{
+			add { CommandManager.RequerySuggested += value; }
+			remove { CommandManager.RequerySuggested -= value; }
+		}
 
 		public void Execute(object parameter)
 		{

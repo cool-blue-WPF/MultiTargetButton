@@ -4,23 +4,27 @@ using System.Windows.Input;
 namespace ContentToggleButton
 {
 
-	public class OutputToggleEnabledImpl : CommandImplBase
+	public class OutputToggleEnabledBind : CommandBindBase
 	{
-		public OutputToggleEnabledImpl() : base()
-		{
-			
-		}
-		
-		public OutputToggleEnabledImpl (IInputElement target, RoutedUICommand cmd)
-			: base(target, cmd)
+
+		public OutputToggleEnabledBind ()
+			: base(Commands.OutputToggleEnabled)
 		{
 
 		}
 
-		public override void Execute (object parameter)
+		public override bool CheckCanExecute (object sender, CanExecuteRoutedEventArgs args)
 		{
-			var flag = Target.IsEnabled;
-			((UIElement) Target).IsEnabled = !flag;
+			var target = sender as IInputElement;
+			return target != null;
+		}
+
+		public override void Execute (object sender, ExecutedRoutedEventArgs args)
+		{
+			var target = sender as UIElement;
+			if (target == null) return;
+			var flag = target.IsEnabled;
+			target.IsEnabled = !flag;
 		}
 	}
 }

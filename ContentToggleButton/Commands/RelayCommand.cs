@@ -14,7 +14,7 @@ namespace ContentToggleButton
 
 		#region ICommand
 
-		#region bool CanExecute
+		#region bool CheckCanExecute
 
 		readonly Func<T, bool> _canExecute;
 		public bool CanExecute (object parameter)

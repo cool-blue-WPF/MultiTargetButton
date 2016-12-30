@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="ContentToggleButton.Themes.Generic"
                     xmlns:local="clr-namespace:ContentToggleButton"
                     xmlns:converters="clr-namespace:ContentToggleButton.Converters">
 

@@ -70,11 +70,6 @@ namespace ContentToggleButton
 		public ContentToggle ()
 		{
 			base.Click += RaiseClickEvent;
-
-			CommandBindings.Add(new OutputToggleImpl(this, 
-				Commands.OutputToggle));
-			CommandBindings.Add(new OutputToggleEnabledImpl(this,
-				Commands.OutputToggleEnabled));
 		}
 
 		#endregion

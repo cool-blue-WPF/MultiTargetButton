@@ -43,7 +43,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandImplBase.cs" />
+    <Compile Include="Commands\CommandBindBase.cs" />
     <Compile Include="Commands\CommandTarget.cs" />
     <Compile Include="Commands\Commands.cs" />
     <Compile Include="Commands\MultiTargetCommand.cs" />
@@ -58,6 +58,9 @@
     <Compile Include="Converters\IsNullConverter.cs" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Enumerators\ContentButtonModelTreeEnumerator.cs" />
+    <Compile Include="Themes\generic.xaml.cs">
+      <DependentUpon>Generic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ButtonView.cs" />
     <Page Include="Themes\BaseTemplate.xaml">
       <SubType>Designer</SubType>
