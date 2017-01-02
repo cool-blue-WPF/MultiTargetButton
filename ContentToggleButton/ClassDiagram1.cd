@@ -49,7 +49,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>IABCgACAACAAAAAAAAEIAAAAAAQAAAAAAAAAAABAJgA=</HashCode>
+      <HashCode>IAACgACAACAAAAAAAAEIAAAAAAQAAAAAAAAAAABABAA=</HashCode>
       <FileName>ContentButton.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -60,7 +60,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AABAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAIgg=</HashCode>
+      <HashCode>AAAAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAg=</HashCode>
       <FileName>ContentToggle.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -82,6 +82,10 @@
     <Position X="4.25" Y="4.75" Width="3.25" />
     <TypeIdentifier />
   </Class>
+  <Class Name="System.Windows.Input.CommandBinding">
+    <Position X="17.25" Y="0.5" Width="3.75" />
+    <TypeIdentifier />
+  </Class>
   <Interface Name="ContentToggleButton.IContent">
     <Position X="4.25" Y="12" Width="3.25" />
     <TypeIdentifier>
@@ -90,11 +94,11 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="System.Windows.Input.ICommandSource">
-    <Position X="18" Y="9" Width="2.75" />
+    <Position X="11.5" Y="9" Width="2.75" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="System.Windows.Input.ICommand">
-    <Position X="21" Y="9" Width="2.5" />
+    <Position X="14.5" Y="9" Width="2.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />

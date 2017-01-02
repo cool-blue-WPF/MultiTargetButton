@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Windows;
-using ContentToggleButton.ViewModel;
+using System.Windows.Controls;
 
 namespace Spec
 {
@@ -9,39 +9,19 @@ namespace Spec
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		public static List<string> CommandButton = new List<string> {"Coupled to CB"};
-
-		public ButtonView ToggleButtonView { get; set; }
-
-		public ButtonView PlainButtonView { get; set; }
-
-		public bool? InitialState = true;
 
 		public MainWindow()
 		{
-			// View Models for xaml bindings
-			ToggleButtonView = new ButtonView(new List<string>
-				{"bound Checked", "bound UnChecked"}, null);
-			PlainButtonView = new ButtonView("bound Button");
-
 			InitializeComponent();
 
-			//// CLR Bindings
-			ButtonView.Bind(clrToggle, new List<string> {"clr Checked", "clr UnChecked"},
-				null);
-			ButtonView.Bind(clrPlain, "clr Button");
+		}
 
-			//MultiEnable.CommandBindings
-			//	.Add(new OutputToggleEnabledBind());
-
-			//var children = LogicalTreeHelper.GetChildren(MultiEnable);
-			//var i = 0;
-			//var log = children.Cast<object>().Aggregate("MultiEnable",
-			//		(current, child) => current
-			//							+ string.Format("\nLogical Child {0} :\t{1}",
-			//								i++, child.ToString()));
-
-			//Dispatcher.InvokeAsync(() => MessageBox.Show(log));
+		private void Panel_OnClick(object sender, RoutedEventArgs e)
+		{
+			Button btn = e.OriginalSource as Button;
+			var win = (Window)System.Windows.Application.LoadComponent(
+				new Uri(btn.Name + ".xaml", UriKind.Relative));
+			win.Show();
 		}
 	}
 }

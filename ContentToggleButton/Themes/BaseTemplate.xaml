@@ -11,7 +11,7 @@
         <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 Background="{TemplateBinding Background}"
-                SnapsToDevicePixels="True">
+                SnapsToDevicePixels="True" >
             <ContentPresenter x:Name="contentPresenter"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentStringFormat="{TemplateBinding ContentStringFormat}"
@@ -28,6 +28,7 @@
                             This will update initialy when Options is set and each time IsChecked changes-->
                         <Binding Path="Options" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding Path="IsChecked" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                 </ContentPresenter.Content>
 

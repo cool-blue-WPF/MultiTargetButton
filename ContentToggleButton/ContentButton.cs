@@ -110,26 +110,6 @@ namespace ContentToggleButton
 
 		#endregion
 
-		#region EVENTS
-
-		public new static readonly RoutedEvent ClickEvent = 
-			EventManager.RegisterRoutedEvent(
-			"Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), 
-			typeof(ContentButton));
-
-		public new event RoutedEventHandler Click
-		{
-			add { AddHandler(ClickEvent, value); }
-			remove { RemoveHandler(ClickEvent, value); }
-		}
-
-		void RaiseClickEvent (object o, RoutedEventArgs e)
-		{
-			RoutedEventArgs newEventArgs = new RoutedEventArgs(ClickEvent);
-			RaiseEvent(newEventArgs);
-		}
-		#endregion
-
 		//Services
 
 		public void Bind (object options, object state0)
@@ -143,11 +123,6 @@ namespace ContentToggleButton
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentButton),
 			   new FrameworkPropertyMetadata(typeof(ContentButton)));
-		}
-
-		public ContentButton()
-		{
-			base.Click += RaiseClickEvent;
 		}
 		#endregion
 	}

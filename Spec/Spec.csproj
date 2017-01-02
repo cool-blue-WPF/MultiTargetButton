@@ -58,10 +58,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ContentButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiTargetCommand.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ContentButton.xaml.cs">
+      <DependentUpon>ContentButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiTargetCommand.xaml.cs">
+      <DependentUpon>MultiTargetCommand.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -96,6 +110,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SelectorEngine\SelectorEngine\SelectorEngine.csproj">
+      <Project>{ea6e76ef-4496-4748-9887-47f2a43937c8}</Project>
+      <Name>SelectorEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ContentToggleButton\ContentToggleButton.csproj">
       <Project>{2e5a66ef-c14d-4aba-b5b4-0f79940567d9}</Project>
       <Name>ContentToggleButton</Name>

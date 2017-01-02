@@ -1,0 +1,18 @@
+﻿<Window x:Class="Spec.ContentButton"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:b="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
+        Title="ContentButton" Height="300" Width="300">
+    <ItemsControl>
+        <ItemsControl.Resources>
+            <Style 
+                BasedOn="{StaticResource {x:Type b:ContentToggle}}"
+                TargetType="{x:Type b:ContentToggle}">
+                <Setter Property="Height" Value="100"></Setter>
+            </Style>
+        </ItemsControl.Resources>
+        <b:ContentToggle Content="Test Button" />
+        <b:ContentToggle ></b:ContentToggle>
+    </ItemsControl>
+</Window>
+

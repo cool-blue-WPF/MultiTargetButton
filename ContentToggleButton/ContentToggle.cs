@@ -39,26 +39,6 @@ namespace ContentToggleButton
 
 		#endregion
 
-		#region RoutedEvent ClickEvent
-
-		public new static readonly RoutedEvent ClickEvent = EventManager.RegisterRoutedEvent(
-			"Click", RoutingStrategy.Bubble, 
-			typeof(RoutedEventHandler), 
-			typeof(ContentToggle));
-
-		public new event RoutedEventHandler Click
-		{
-			add { AddHandler(ClickEvent, value); }
-			remove { RemoveHandler(ClickEvent, value); }
-		}
-
-		private void RaiseClickEvent (object o, RoutedEventArgs e)
-		{
-			RaiseEvent(new RoutedEventArgs(ClickEvent));
-		}
-
-		#endregion
-
 		#region CONSTRUCTORS
 		
 		static ContentToggle ()
@@ -69,7 +49,7 @@ namespace ContentToggleButton
 
 		public ContentToggle ()
 		{
-			base.Click += RaiseClickEvent;
+
 		}
 
 		#endregion
