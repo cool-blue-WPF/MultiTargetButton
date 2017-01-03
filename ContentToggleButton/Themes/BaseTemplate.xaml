@@ -16,19 +16,19 @@
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               ContentStringFormat="{TemplateBinding ContentStringFormat}"
                               Focusable="False"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               Margin="{TemplateBinding Padding}"
                               RecognizesAccessKey="True"
                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
 
                 <ContentPresenter.Content>
                     <MultiBinding Converter="{StaticResource ContentConverter}">
                         <!--This assumes that the templated control impliments IContent
                             This will update initialy when Options is set and each time IsChecked changes-->
-                        <Binding Path="Options" RelativeSource="{RelativeSource TemplatedParent}" />
-                        <Binding Path="IsChecked" RelativeSource="{RelativeSource TemplatedParent}" />
                         <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                        <!--IsChecked only included to trigger the binding to update-->
+                        <Binding Path="IsChecked" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>
                 </ContentPresenter.Content>
 

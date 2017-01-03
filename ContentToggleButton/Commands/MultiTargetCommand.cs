@@ -6,9 +6,11 @@ using System.Windows.Input;
 namespace ContentToggleButton
 {
 	/// <summary>
-	/// This is a standard ICommand object so, no target. The host simply invokes 
-	/// Execute on it's Click event and the Command is distributed to the targets
-	/// stored in the base.Items collection.
+	/// This is a standard ICommand object (i.e. not a routed command)so, no 
+	/// target. The host simply invokes Execute on it's Click event and the 
+	/// Command is distributed to the targets stored in the base.Items 
+	/// collection.
+	/// 
 	/// </summary>
 	///
 	/// Command is normally a routed command 

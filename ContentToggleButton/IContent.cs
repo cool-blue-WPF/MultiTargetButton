@@ -9,5 +9,6 @@ namespace ContentToggleButton
 		bool IsEnabled { get; set; }
 		bool IsPressed { get; }
 		void Bind (object options, object state0);
+		object Content { get; set; }
 	}
 }

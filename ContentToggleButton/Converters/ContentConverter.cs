@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace ContentToggleButton.Converters
@@ -15,13 +13,12 @@ namespace ContentToggleButton.Converters
 		{
 			try
 			{
-				var options = (List<string>)values[0];
-				var isChecked = (bool?)values[1];
-				var control = values[2] as ContentControl;
-				var content = control != null ? control.Content : null;
-				if(content != null) return content;
+				var ic = values[0] as IContent;
+				var content = ic == null ? null : ic.Content;
+				if(ic == null || content != null) return content;
+				var options = ic.Options;
 
-				return isChecked ?? true 
+				return ic.IsChecked ?? true 
 					? options[0] ?? DependencyProperty.UnsetValue.ToString()
 					: options[1] ?? DependencyProperty.UnsetValue.ToString();
 			}

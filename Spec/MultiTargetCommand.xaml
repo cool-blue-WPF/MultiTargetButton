@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:b="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
-        xmlns:conv="clr-namespace:ContentToggleButton.Converters;assembly=ContentToggleButton"
         Title="MainWindow" Height="803.911" Width="425" Background="#38534D">
 
     <Window.Resources>
@@ -144,32 +143,43 @@
             </UniformGrid>
 
             <UniformGrid>
-                <ToolBar Height="30">
+                <ToolBar Height="30" Margin="{StaticResource ButtonMargin}">
                     <Button 
                         Content="Toggle Enabled -->" 
                             Command="{x:Static b:Commands.OutputToggleEnabled}"
                             CommandTarget="{Binding ElementName=CB}" />
                 </ToolBar>
-                <CheckBox x:Name="CB" Height="30" Margin="{StaticResource ButtonMargin}"
+                <Grid Background="AliceBlue"  Height="30" 
+                      Margin="{StaticResource ButtonMargin}">
+                    <CheckBox x:Name="CB"
                           VerticalAlignment="Center" VerticalContentAlignment="Center"
-                          BorderBrush="#FFDA3B3B" Foreground="#FFDC1919">
+                          Margin="6 0">
+                        Linked CheckBox
 
-                    <CheckBox.CommandBindings>
+                        <CheckBox.CommandBindings>
 
-                        <b:OutputToggleBind />
-                        <b:OutputToggleEnabledBind />
+                            <b:OutputToggleBind />
+                            <b:OutputToggleEnabledBind />
 
-                    </CheckBox.CommandBindings>
+                        </CheckBox.CommandBindings>
 
-                </CheckBox>
-
+                    </CheckBox>
+                </Grid>
             </UniformGrid>
 
-            <b:ContentButton x:Name="DefPlain" >
+            <b:ContentButton x:Name="DefPlain" 
+                             VerticalContentAlignment="Center">
 
                 <b:ContentButton.CommandBindings>
                     <b:OutputToggleEnabledBind />
                 </b:ContentButton.CommandBindings>
+
+                <!--Complicated content to check logical tree is working-->
+                <b:ContentButton Name="InnerButton"
+                                 Margin="0" VerticalAlignment="Center">
+                    <TextBox Name="InnerTextBox" IsHitTestVisible="False" Margin="0"
+                             Background="{x:Null}" Cursor="Arrow" BorderBrush="{x:Null}">Multi Toggle Local</TextBox>
+                </b:ContentButton>
 
                 <b:ContentButton.Command>
 
@@ -183,10 +193,16 @@
                 </b:ContentButton.Command>
             </b:ContentButton>
 
-            <Button x:Name="ToggleEnableInner"
-                    Content="Toggle Enable Level 0"
+            <Button x:Name="ToggleEnableInner" VerticalContentAlignment="Center"
                     Command="{x:Static b:Commands.OutputToggleEnabled}"
-                    CommandTarget="{Binding ElementName=MultiEnable}" />
+                    CommandTarget="{Binding ElementName=MultiEnable}">
+                <b:ContentButton Name="InnerButton2"
+                                 Margin="0" VerticalAlignment="Center">
+                    <TextBox Name="InnerTextBox2" IsHitTestVisible="False" Margin="0"
+                             Background="{x:Null}" 
+                             Cursor="Arrow" BorderBrush="{x:Null}">Multi Toggle Level 0</TextBox>
+                </b:ContentButton>
+            </Button>
 
         </StackPanel>
 
@@ -194,7 +210,7 @@
 
         <b:ContentButton x:Name="MultiEnable"
                          BorderBrush="#FFF00E0E"
-                         Content="^^^Multi Target Toggle^^^">
+                         Content="^^^Multi Target Toggle Enabled^^^">
             <b:ContentButton.CommandBindings>
                 <b:OutputToggleEnabledBind />
             </b:ContentButton.CommandBindings>

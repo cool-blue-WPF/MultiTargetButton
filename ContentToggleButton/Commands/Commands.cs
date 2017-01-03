@@ -34,6 +34,12 @@ namespace ContentToggleButton
 
 		#endregion
 
+		#region Child Complex
+
+		
+
+		#endregion
+
 		#region Agregate CanExecute
 
 		public static bool QueryCanExecute(MultiTargetCommand multiTargetCommand)
