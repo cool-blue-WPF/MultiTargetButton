@@ -81,12 +81,16 @@ namespace ContentToggleButton
 								object newValue)
 		{
 			var children = b._logicalChildren;
-			if (children != null)
+			if (children != null && oldValue is MultiTargetCommand)
 			{
-				if (children.Contains(oldValue))
+				if (children.Contains(oldValue))	// 
 				{
 					children.Remove(oldValue);
+					b.RemoveLogicalChild(oldValue);
+
 					children.Add(newValue);
+					b.AddLogicalChild(newValue);
+
 					return;
 				}
 				throw new InvalidOperationException("Only one MultiCommand can be set");
@@ -117,7 +121,7 @@ namespace ContentToggleButton
 			Options = new List<string> { (string)options };
 		}
 
-		#region Constructers
+		#region Constructors
 
 		static ContentButton ()
 		{

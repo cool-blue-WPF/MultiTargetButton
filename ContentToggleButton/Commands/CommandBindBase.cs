@@ -7,11 +7,7 @@ namespace ContentToggleButton
 		protected CommandBindBase (RoutedUICommand cmd)
 			: base(cmd)
 		{
-			base.Executed += (sender, args) =>
-			{
-				this.Execute(sender, args);
-				args.Handled = true;
-			};
+			base.Executed += this.Execute;
 			base.CanExecute += (sender, args) =>
 			{
 				args.CanExecute =

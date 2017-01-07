@@ -1,16 +1,17 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace ContentToggleButton
 {
-	public static class Commands
+	public static class MultiCommands
 	{
 		#region RoutedCommands
 
 		#region RoutedUICommand OutputToggle
 
 		private static readonly RoutedUICommand outputToggle =
-			new RoutedUICommand("Toggle Target", "OutputToggle", typeof(Commands));
+			new RoutedUICommand("Toggle Target", "OutputToggle", typeof(MultiCommands));
 
 		public static RoutedUICommand OutputToggle
 		{
@@ -23,7 +24,7 @@ namespace ContentToggleButton
 
 		private static readonly RoutedUICommand outputToggleEnabled =
 			new RoutedUICommand("Toggle Target Enabled", "OutputToggleEnabled",
-				typeof(Commands));
+				typeof(MultiCommands));
 
 		public static RoutedUICommand OutputToggleEnabled
 		{
@@ -36,19 +37,24 @@ namespace ContentToggleButton
 
 		#region Child Complex
 
-		
+		//public static DependencyProperty RegisterCommandProxy (DependencyProperty commandProperty)
+		//{
+		//	return commandProperty.AddOwner(typeof(ContentButton),
+		//	new FrameworkPropertyMetadata(CommandChangedCallback));
+		//}
+
 
 		#endregion
 
 		#region Agregate CanExecute
 
-		public static bool QueryCanExecute(MultiTargetCommand multiTargetCommand)
+		public static bool QueryCanExecute(object multiTargetCommand)
 		{
 			var source = multiTargetCommand as ICommandSource;
 
 			var canExecute = false;
 
-			foreach (var child in multiTargetCommand.Items)
+			foreach (var child in ((ItemsControl)multiTargetCommand).Items)
 			{
 				canExecute |= CanExecuteCommand(source.Command, source.CommandParameter,
 					((CommandTarget) child).Target);
@@ -70,17 +76,23 @@ namespace ContentToggleButton
 
 		#region Agregate Execute
 
-		public static void Distribute(MultiTargetCommand multiTargetCommand)
+		public static void Distribute(object multiTargetCommand)
 		{
 			var source = multiTargetCommand as ICommandSource;
 
-			foreach (var child in multiTargetCommand.Items)
+			foreach (var child in ((ItemsControl)multiTargetCommand).Items)
 			{
 				ExecuteCommand(source.Command, source.CommandParameter,
 					((CommandTarget) child).Target);
 			}
 		}
 
+		/// <summary>
+		/// Based on https://referencesource.microsoft.com/#PresentationFramework/src/Framework/MS/Internal/Commands/CommandHelpers.cs
+		/// </summary>
+		/// <param name="command"></param>
+		/// <param name="parameter"></param>
+		/// <param name="target"></param>
 		public static void ExecuteCommand(ICommand command, object parameter,
 			IInputElement target)
 		{

@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Commands\CommandBindBase.cs" />
     <Compile Include="Commands\CommandTarget.cs" />
-    <Compile Include="Commands\Commands.cs" />
+    <Compile Include="Commands\MultiCommands.cs" />
     <Compile Include="Commands\MultiTargetCommand.cs" />
     <Compile Include="Commands\OutputToggle.cs">
       <SubType>Code</SubType>

@@ -13,7 +13,7 @@ namespace Spec
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MultiTargetCommand : Window
+	public partial class MTCComplex : Window
 	{
 		public static List<string> CommandButton = new List<string> {"Coupled to CB"};
 
@@ -23,7 +23,7 @@ namespace Spec
 
 		public bool? InitialState = true;
 
-		public MultiTargetCommand ()
+		public MTCComplex ()
 		{
 			// View Models for xaml bindings
 			ToggleButtonView = new ButtonView(new List<string>
@@ -59,11 +59,6 @@ namespace Spec
 				o.GetType().Name, e.RoutedEvent, e.Source.GetType().Name, 
 				((FrameworkElement)e.Source).Name, receiver);
 			Log.ScrollToEnd();
-		}
-
-		private void PanelButtonClick (object o, RoutedEventArgs e)
-		{
-			LogEvent(o,e);
 		}
 
 		private void StyleClick (object o, RoutedEventArgs e)

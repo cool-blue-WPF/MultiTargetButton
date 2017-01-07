@@ -1,0 +1,129 @@
+﻿<Window x:Class="Spec.MTCMinimal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:contentToggleButton="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="MTCMinimal" Height="300" Width="300">
+    <Window.Resources>
+
+        <system:Double x:Key="ButtonHeight">30</system:Double>
+        <Thickness x:Key="ButtonMargin">6</Thickness>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}"></Setter>
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}"></Setter>
+        </Style>
+        <Style TargetType="{x:Type ToggleButton}">
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}"></Setter>
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}"></Setter>
+        </Style>
+        <Style TargetType="{x:Type contentToggleButton:ContentButton}"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}"></Setter>
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}"></Setter>
+        </Style>
+        <Style TargetType="{x:Type contentToggleButton:ContentToggle}"
+               BasedOn="{StaticResource BaseStyle}">
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}"></Setter>
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}"></Setter>
+        </Style>
+
+        <contentToggleButton:MultiTargetCommand x:Key="MTC0"
+                    DataContext="{Binding ElementName= MultiEnable}"
+                    Command="{x:Static contentToggleButton:MultiCommands.OutputToggleEnabled}"
+                    CommandParameter="Multi Target">
+
+            <contentToggleButton:CommandTarget Target="{x:Reference Button1}" />
+            <contentToggleButton:CommandTarget Target="{x:Reference  Button2}" />
+            <contentToggleButton:CommandTarget Target="{x:Reference  Button3}" />
+
+        </contentToggleButton:MultiTargetCommand>
+
+        <contentToggleButton:MultiTargetCommand x:Key="MTC1"
+                    DataContext="{Binding ElementName= MultiEnable}"
+                    Command="{x:Static contentToggleButton:MultiCommands.OutputToggleEnabled}"
+                    CommandParameter="Multi Target">
+
+            <contentToggleButton:CommandTarget Target="{x:Reference Button1}" />
+            <contentToggleButton:CommandTarget Target="{x:Reference  Button2}" />
+
+        </contentToggleButton:MultiTargetCommand>
+
+        <contentToggleButton:MultiTargetCommand x:Key="MTC2"
+                    DataContext="{Binding ElementName= MultiEnable}"
+                    Command="{x:Static contentToggleButton:MultiCommands.OutputToggleEnabled}"
+                    CommandParameter="Multi Target">
+
+            <contentToggleButton:CommandTarget Target="{x:Reference Button1}" />
+
+        </contentToggleButton:MultiTargetCommand>
+
+    </Window.Resources>
+    
+    <Window.CommandBindings>
+
+        <CommandBinding Command="Pause"
+                        Executed="Pause_OnExecuted"
+                        CanExecute="Pause_OnCanExecute"/>
+
+    </Window.CommandBindings>
+    
+    <StackPanel>
+        <StackPanel Name="Targets">
+            <contentToggleButton:ContentButton Name="Button1">
+                <contentToggleButton:ContentButton.CommandBindings>
+                    <contentToggleButton:OutputToggleEnabledBind />
+                </contentToggleButton:ContentButton.CommandBindings>
+            </contentToggleButton:ContentButton>
+            <contentToggleButton:ContentButton Name="Button2">
+                <contentToggleButton:ContentButton.CommandBindings>
+                    <contentToggleButton:OutputToggleEnabledBind />
+                </contentToggleButton:ContentButton.CommandBindings>
+            </contentToggleButton:ContentButton>
+            <contentToggleButton:ContentButton Name="Button3">
+                <contentToggleButton:ContentButton.CommandBindings>
+                    <contentToggleButton:OutputToggleEnabledBind />
+                </contentToggleButton:ContentButton.CommandBindings>
+            </contentToggleButton:ContentButton>
+        </StackPanel>
+        
+        <contentToggleButton:ContentButton x:Name="MultiEnable"
+                         BorderBrush="#FFF00E0E" >
+
+            ^^^Multi Target Toggle Enabled^^^
+            
+            <contentToggleButton:ContentButton.Command>
+
+                <contentToggleButton:MultiTargetCommand
+                    Command="{x:Static contentToggleButton:MultiCommands.OutputToggleEnabled}"
+                    CommandParameter="Multi Target">
+
+                    <contentToggleButton:CommandTarget Target="{Binding ElementName=Button1}" />
+                    <contentToggleButton:CommandTarget Target="{Binding ElementName=Button2}" />
+                    <contentToggleButton:CommandTarget Target="{Binding ElementName=Button3}" />
+
+                </contentToggleButton:MultiTargetCommand>
+
+            </contentToggleButton:ContentButton.Command>
+        </contentToggleButton:ContentButton>
+
+        <contentToggleButton:ContentButton Name="ConfigButton"
+            Click="ChangeMultiCommand_OnClick">Cycle Command</contentToggleButton:ContentButton>
+        <Label Name="Log"></Label>
+    </StackPanel>
+</Window>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

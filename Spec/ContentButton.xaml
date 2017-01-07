@@ -6,12 +6,17 @@
     <ItemsControl>
         <ItemsControl.Resources>
             <Style 
+                BasedOn="{StaticResource {x:Type b:ContentButton}}"
+                TargetType="{x:Type b:ContentButton}">
+                <Setter Property="Height" Value="100"></Setter>
+            </Style>
+            <Style 
                 BasedOn="{StaticResource {x:Type b:ContentToggle}}"
                 TargetType="{x:Type b:ContentToggle}">
                 <Setter Property="Height" Value="100"></Setter>
             </Style>
         </ItemsControl.Resources>
-        <b:ContentToggle Content="Test Button" />
+        <b:ContentButton >Test Button</b:ContentButton>
         <b:ContentToggle ></b:ContentToggle>
     </ItemsControl>
 </Window>

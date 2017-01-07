@@ -21,7 +21,7 @@ namespace ContentToggleButton
 
 		public bool CanExecute(object parameter)
 		{
-			return Commands.QueryCanExecute(this);
+			return MultiCommands.QueryCanExecute(this);
 		}
 
 		public event EventHandler CanExecuteChanged
@@ -32,7 +32,7 @@ namespace ContentToggleButton
 
 		public void Execute(object parameter)
 		{
-			Commands.Distribute(this);
+			MultiCommands.Distribute(this);
 		}
 
 		#endregion

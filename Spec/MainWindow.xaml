@@ -6,8 +6,9 @@
     <ListBox Name="Panel" Margin="20,20,20,20"
                 Button.Click="Panel_OnClick">
 
-        <Button Name="MultiTargetCommand">MultiTarget Command</Button>
+        <Button Name="MTCComplex">MultiTarget Command</Button>
         <Button Name="ContentButton">Content Button</Button>
-        
+        <Button Name="MTCMinimal">Minimal MultiTarget Command</Button>
+
     </ListBox>
 </Window>

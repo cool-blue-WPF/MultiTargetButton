@@ -8,7 +8,7 @@ namespace ContentToggleButton
 	{
 
 		public OutputToggleEnabledBind ()
-			: base(Commands.OutputToggleEnabled)
+			: base(MultiCommands.OutputToggleEnabled)
 		{
 
 		}
