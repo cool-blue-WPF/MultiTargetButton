@@ -9,6 +9,7 @@
         <Button Name="MTCComplex">MultiTarget Command</Button>
         <Button Name="ContentButton">Content Button</Button>
         <Button Name="MTCMinimal">Minimal MultiTarget Command</Button>
+        <Button Name="Plain_MTCComplex">Plain MultiTarget Command</Button>
 
     </ListBox>
 </Window>

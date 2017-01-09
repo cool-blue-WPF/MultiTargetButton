@@ -1,0 +1,236 @@
+﻿<Window x:Class="Spec.Plain.MTCComplex"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:b="clr-namespace:ContentToggleButton;assembly=ContentToggleButton"
+        Title="MainWindow" Height="803.911" Width="425" Background="#38534D">
+
+    <Window.Resources>
+
+        <sys:Double x:Key="ButtonHeight">30</sys:Double>
+        <Thickness x:Key="ButtonMargin">6</Thickness>
+
+        <Style TargetType="{x:Type Button}">
+            <EventSetter Event="Click" Handler="StyleClick" />
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}" />
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}" />
+        </Style>
+        <Style TargetType="{x:Type ToggleButton}">
+            <EventSetter Event="Click" Handler="StyleClick" />
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}" />
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}" />
+        </Style>
+        <Style TargetType="{x:Type CheckBox}">
+            <EventSetter Event="Click" Handler="StyleClick" />
+        </Style>
+        <Style TargetType="{x:Type b:MultiCommandButton}">
+            <EventSetter Event="Click" Handler="StyleClick" />
+            <Setter Property="Height" Value="{StaticResource ButtonHeight}" />
+            <Setter Property="Margin" Value="{StaticResource ButtonMargin}" />
+        </Style>
+
+        <Style TargetType="UniformGrid">
+            <Setter Property="Columns" Value="2" />
+        </Style>
+
+        <CommandBindingCollection x:Key="OutputToggleReceiveAll">
+            <b:OutputToggleBind />
+            <b:OutputToggleEnabledBind />
+        </CommandBindingCollection>
+
+
+    </Window.Resources>
+
+    <StackPanel Name="Panel" Margin="20,20,20,20" Orientation="Vertical">
+        <StackPanel.Resources>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Margin" Value="6,0,6,0" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="AliceBlue" />
+            </Style>
+        </StackPanel.Resources>
+
+        <!--Log Complex-->
+        <StackPanel>
+
+            <ToolBar>
+                <Button Content="Copy" Command="Copy" />
+                <Button Content="Cut" Command="Cut" />
+                <Button Content="Paste" Command="Paste" />
+                <Button Content="Clear" Command="Cut"
+                        CommandTarget="{Binding ElementName=Log}" />
+            </ToolBar>
+
+            <TextBox Name="Log" Height="180" Foreground="#FFE02525"
+                     ToolTipService.InitialShowDelay="1000"
+                     ToolTipService.ShowDuration="3000"
+                     ToolTipService.BetweenShowDelay="2000"
+                     ToolTipService.Placement="Center"
+                     ToolTipService.HasDropShadow="true"
+                     ToolTipService.ShowOnDisabled="true"
+                     ToolTipService.IsEnabled="true"
+                     ToolTip="Right-Click to Clear Text"
+                     PreviewMouseRightButtonUp="Log_PreviewMouseRightButtonUp"
+                     Background="Black">
+                <TextBox.CommandBindings>
+                    <CommandBinding Command="Cut"
+                                    Executed="Button_Clear"
+                                    CanExecute="OnCanExecute" />
+                </TextBox.CommandBindings>
+            </TextBox>
+        </StackPanel>
+
+        <!--Bind to ToggleButtonView CLR object-->
+        <UniformGrid Rows="2" Margin="0,6" Background="Black">
+
+            <Label>Level 1 Bind to CLR from xaml</Label>
+            <Label />
+
+            <Button x:Name="Plain"
+                    Command="{x:Static b:MultiCommands.OutputToggle}"
+                    CommandTarget="{Binding ElementName=Toggle}">
+                Toggle -->
+            </Button>
+            <ToggleButton Name="Toggle"
+                          ToolTip="{Binding RelativeSource={RelativeSource Self},
+                                    Path=Name}"
+                          IsChecked="{Binding ToggleButtonView.InitialState,
+                                    Mode=OneWay,
+                                    RelativeSource={StaticResource View}}"
+                          BorderBrush="#FF0DF021"
+                          b:Behaviours.CommandReceivers="{StaticResource OutputToggleReceiveAll}" />
+
+        </UniformGrid>
+
+        <!--Bound to from VM-->
+        <UniformGrid Rows="2" Margin="0,6" Background="Black">
+
+            <Label>Level 1 Bound to xaml from CLR</Label>
+            <Label />
+
+            <Button x:Name="clrPlain"
+                    Command="{x:Static b:MultiCommands.OutputToggle}"
+                    CommandTarget="{Binding ElementName=clrToggle}">
+                Toggle -->
+            </Button>
+            <ToggleButton x:Name="clrToggle"
+                          BorderBrush="#FF0DF021"
+                          b:Behaviours.CommandReceivers="{StaticResource OutputToggleReceiveAll}" />
+        </UniformGrid>
+        <!--Accept default-->
+
+        <StackPanel Name="InternalPanel" Background="Black" Margin="0,6">
+
+            <Label>Level 1</Label>
+
+            <UniformGrid Margin="0,6" Columns="2">
+                <Button Name="cbButton"
+                        Content="Toggle -->"
+                        Command="{x:Static b:MultiCommands.OutputToggleEnabled}"
+                        CommandTarget="{Binding ElementName=DefToggle}"
+                        VerticalAlignment="Stretch" />
+                <ToggleButton Name="DefToggle"
+                              VerticalAlignment="Stretch"
+                              b:Behaviours.CommandReceivers="{StaticResource OutputToggleReceiveAll}" />
+
+            </UniformGrid>
+
+            <UniformGrid>
+                <ToolBar Height="30" Margin="{StaticResource ButtonMargin}">
+                    <Button
+                        Content="Toggle Enabled -->"
+                        Command="{x:Static b:MultiCommands.OutputToggleEnabled}"
+                        CommandTarget="{Binding ElementName=CB}" />
+                </ToolBar>
+                <Grid Background="AliceBlue" Height="30"
+                      Margin="{StaticResource ButtonMargin}">
+                    <CheckBox x:Name="CB"
+                              VerticalAlignment="Center" VerticalContentAlignment="Center"
+                              Margin="6 0"
+                              b:Behaviours.CommandReceivers="{StaticResource OutputToggleReceiveAll}">
+                        Linked CheckBox
+                    </CheckBox>
+                </Grid>
+            </UniformGrid>
+
+            <b:MultiCommandButton x:Name="DefPlain"
+                                  VerticalContentAlignment="Center">
+
+                <b:MultiCommandButton.CommandBindings>
+                    <b:OutputToggleEnabledBind />
+                </b:MultiCommandButton.CommandBindings>
+
+                <!--Complicated content to check logical tree is working-->
+                <Button Name="InnerButton"
+                        Margin="0" VerticalAlignment="Center">
+                    <TextBox Name="InnerTextBox" IsHitTestVisible="False" Margin="0"
+                             Background="{x:Null}" Cursor="Arrow" BorderBrush="{x:Null}">
+                        Multi Toggle Local
+                    </TextBox>
+                </Button>
+
+                <b:MultiCommandButton.Command>
+
+                    <b:MultiTargetCommand Command="{x:Static b:MultiCommands.OutputToggle}">
+
+                        <b:CommandTarget Target="{x:Reference Name=CB}" />
+                        <b:CommandTarget Target="{x:Reference Name=DefToggle}" />
+
+                    </b:MultiTargetCommand>
+
+                </b:MultiCommandButton.Command>
+            </b:MultiCommandButton>
+
+            <Button x:Name="ToggleEnableInner" VerticalContentAlignment="Center"
+                    Command="{x:Static b:MultiCommands.OutputToggleEnabled}"
+                    CommandTarget="{Binding ElementName=MultiEnable}">
+                <Button Name="InnerButton2"
+                        Margin="0" VerticalAlignment="Center">
+                    <TextBox Name="InnerTextBox2" IsHitTestVisible="False" Margin="0"
+                             Background="{x:Null}"
+                             Cursor="Arrow" BorderBrush="{x:Null}">
+                        Multi Toggle Level 0
+                    </TextBox>
+                </Button>
+            </Button>
+
+        </StackPanel>
+
+        <Label>Level 0</Label>
+
+        <b:MultiCommandButton x:Name="MultiEnable"
+                              BorderBrush="#FFF00E0E">
+
+            ^^^Multi Target Toggle Enabled^^^
+            <b:MultiCommandButton.CommandBindings>
+                <b:OutputToggleEnabledBind />
+            </b:MultiCommandButton.CommandBindings>
+
+            <b:MultiCommandButton.Command>
+
+                <b:MultiTargetCommand
+                    Command="{x:Static b:MultiCommands.OutputToggleEnabled}"
+                    CommandParameter="Multi Target">
+
+                    <b:CommandTarget Target="{Binding ElementName=Toggle}" />
+                    <b:CommandTarget Target="{Binding ElementName=clrToggle}" />
+                    <b:CommandTarget Target="{Binding ElementName=DefPlain}" />
+
+                </b:MultiTargetCommand>
+
+            </b:MultiCommandButton.Command>
+        </b:MultiCommandButton>
+        <Button x:Name="ToggleEnable"
+                Content="^^^Toggle Enable^^^"
+                Command="{x:Static b:MultiCommands.OutputToggleEnabled}"
+                CommandTarget="{Binding ElementName=MultiEnable}" />
+
+    </StackPanel>
+</Window>

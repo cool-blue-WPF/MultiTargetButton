@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -32,17 +34,6 @@ namespace ContentToggleButton
 		}
 
 		#endregion
-
-		#endregion
-
-		#region Child Complex
-
-		//public static DependencyProperty RegisterCommandProxy (DependencyProperty commandProperty)
-		//{
-		//	return commandProperty.AddOwner(typeof(ContentButton),
-		//	new FrameworkPropertyMetadata(CommandChangedCallback));
-		//}
-
 
 		#endregion
 

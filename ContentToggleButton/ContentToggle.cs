@@ -31,7 +31,7 @@ namespace ContentToggleButton
 			set { base.SetCurrentValue(IsPressedProperty, value); }
 		}
 
-		public void Bind (object options, object state0)
+		public void Bind (object options, bool? state0 = false)
 		{
 			this.Options = (List<string>)options;
 			this.IsChecked = (bool?)state0;

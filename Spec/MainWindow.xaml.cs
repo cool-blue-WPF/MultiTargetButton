@@ -20,7 +20,7 @@ namespace Spec
 		{
 			Button btn = e.OriginalSource as Button;
 			var win = (Window)System.Windows.Application.LoadComponent(
-				new Uri(btn.Name + ".xaml", UriKind.Relative));
+				new Uri(btn.Name.Replace("_", "/") + ".xaml", UriKind.Relative));
 			win.Show();
 		}
 	}

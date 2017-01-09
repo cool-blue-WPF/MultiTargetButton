@@ -29,6 +29,10 @@
         <Setter Property="Template" Value="{StaticResource ControlTemplate}" />
     </Style>
 
+    <Style TargetType="{x:Type local:MultiCommandButton}">
+        <Setter Property="Template" Value="{StaticResource ControlTemplate}" />
+    </Style>
+
 </ResourceDictionary>
     
     

@@ -8,7 +8,7 @@ using System.Windows.Input;
 using ContentToggleButton.ViewModel;
 using SelectorEngine;
 
-namespace Spec
+namespace Spec.Plain
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -27,15 +27,10 @@ namespace Spec
 		{
 			// View Models for xaml bindings
 			ToggleButtonView = new ButtonView(new List<string>
-				{"bound Checked", "bound UnChecked"}, null);
+				{"bound Checked", "bound UnChecked"}, false);
 			PlainButtonView = new ButtonView("Toggle -->");
 
 			InitializeComponent();
-
-			//// CLR Bindings
-			clrToggle.Bind(new List<string> { "clr Checked", "clr UnChecked" },
-				null);
-			clrPlain.Bind("Toggle -->");
 
 			foreach (var logicalChild in this.FindChildren<ButtonBase>())
 			{

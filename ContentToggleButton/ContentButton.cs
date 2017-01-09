@@ -29,19 +29,25 @@ namespace ContentToggleButton
 		public bool? IsChecked
 		{
 			get { return null; }
-			set { }
+			set { throw new InvalidOperationException("IsChecked is not implemented on a Button"); }
 		}
 
-		//Protective wrapper to stop setting a local value from replacing bindings
+		//Protective wrapper to stop setting of a local value from replacing bindings
 		//i.e. the binding can work in parallel with local setters 
-		public new bool IsEnabled
+		//public new bool IsEnabled
+		//{
+		//	get { return (bool)GetValue(IsEnabledProperty); }
+		//	set
+		//	{
+		//		SetCurrentValue(IsEnabledProperty, value);
+		//	}
+		//}
+
+		public void Bind (object options, bool? state0 = false)
 		{
-			get { return (bool)GetValue(IsEnabledProperty); }
-			set
-			{
-				SetCurrentValue(IsEnabledProperty, value);
-			}
+			Options = new List<string> { (string)options };
 		}
+
 		#endregion
 
 		#region Command
@@ -77,8 +83,8 @@ namespace ContentToggleButton
 			b.RemoveLogicalChild(e.OldValue);
 		}
 
-		private static void _changeLogicalMultiTargetCommand (ContentButton b, object oldValue,
-								object newValue)
+		private static void _changeLogicalMultiTargetCommand (ContentButton b, 
+			object oldValue, object newValue)
 		{
 			var children = b._logicalChildren;
 			if (children != null && oldValue is MultiTargetCommand)
@@ -113,13 +119,6 @@ namespace ContentToggleButton
 		}
 
 		#endregion
-
-		//Services
-
-		public void Bind (object options, object state0)
-		{
-			Options = new List<string> { (string)options };
-		}
 
 		#region Constructors
 

@@ -16,7 +16,7 @@
                 <Setter Property="Height" Value="100"></Setter>
             </Style>
         </ItemsControl.Resources>
-        <b:ContentButton >Test Button</b:ContentButton>
+        <b:ContentButton Name="TestButton">Test Button</b:ContentButton>
         <b:ContentToggle ></b:ContentToggle>
     </ItemsControl>
 </Window>
