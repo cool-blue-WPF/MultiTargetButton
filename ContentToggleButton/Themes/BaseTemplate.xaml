@@ -26,7 +26,8 @@
                     <MultiBinding Converter="{StaticResource ContentConverter}">
                         <!--This assumes that the templated control impliments IContent
                             This will update initialy when Options is set and each time IsChecked changes-->
-                        <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="Content" RelativeSource="{RelativeSource TemplatedParent}" />
+                        <Binding Path="Options" RelativeSource="{RelativeSource TemplatedParent}" />
                         <!--IsChecked only included to trigger the binding to update-->
                         <Binding Path="IsChecked" RelativeSource="{RelativeSource TemplatedParent}" />
                     </MultiBinding>

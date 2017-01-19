@@ -13,7 +13,7 @@ namespace Spec.Plain
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MTCComplex : Window
+	public partial class MTCComplex1 : Window
 	{
 		public static List<string> CommandButton = new List<string> {"Coupled to CB"};
 
@@ -23,7 +23,7 @@ namespace Spec.Plain
 
 		public bool? InitialState = true;
 
-		public MTCComplex ()
+		public MTCComplex1 ()
 		{
 			// View Models for xaml bindings
 			ToggleButtonView = new ButtonView(new List<string>

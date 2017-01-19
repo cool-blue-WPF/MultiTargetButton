@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="ContentToggleButton.CommandBindBase">
-    <Position X="12.75" Y="4.75" Width="2.75" />
+    <Position X="12.75" Y="5.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Commands\CommandBindBase.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContentToggleButton.MultiCommands">
-    <Position X="11.5" Y="9.5" Width="5.5" />
+    <Position X="11.5" Y="10" Width="5.5" />
     <TypeIdentifier>
       <HashCode>AIAgAAAAAAAAAABAAAAAAAAAAAEAAABCAAAAAgAAgAA=</HashCode>
       <FileName>Commands\MultiCommands.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContentToggleButton.CommandTarget">
-    <Position X="11.5" Y="3" Width="2.75" />
+    <Position X="11.5" Y="3.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAACAA=</HashCode>
       <FileName>Commands\CommandTarget.cs</FileName>
@@ -30,14 +30,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="ContentToggleButton.OutputToggleBind">
-    <Position X="11.5" Y="7.5" Width="2.5" />
+    <Position X="11.5" Y="8" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Commands\OutputToggle.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ContentToggleButton.OutputToggleEnabledBind">
-    <Position X="14.5" Y="7.5" Width="2.5" />
+    <Position X="14.5" Y="8" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Commands\OutputToggleEnable.cs</FileName>
@@ -83,13 +83,13 @@
     <TypeIdentifier />
   </Class>
   <Class Name="System.Windows.Input.CommandBinding">
-    <Position X="17.25" Y="4.75" Width="3.75" />
+    <Position X="17.5" Y="5.25" Width="3.75" />
     <TypeIdentifier />
   </Class>
   <Class Name="ContentToggleButton.MultiCommandButton">
     <Position X="11.5" Y="0.5" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>IAAAAAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAABAA=</HashCode>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAQAAAAIAAABAAAABAA=</HashCode>
       <FileName>Commands\MultiCommandButton.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -101,11 +101,11 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="System.Windows.Input.ICommandSource">
-    <Position X="11.5" Y="12.75" Width="2.75" />
+    <Position X="17.5" Y="10.5" Width="2.75" />
     <TypeIdentifier />
   </Interface>
   <Interface Name="System.Windows.Input.ICommand">
-    <Position X="14.5" Y="12.75" Width="2.5" />
+    <Position X="17.5" Y="8.25" Width="2.5" />
     <TypeIdentifier />
   </Interface>
   <Font Name="Segoe UI" Size="9" />

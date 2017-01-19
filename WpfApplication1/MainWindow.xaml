@@ -72,22 +72,23 @@
             </Button>
             
         </StackPanel>
-        <ctb:MultiCommandButton x:Name="MultiEnable"
+        <StackPanel>
+            <ctb:MultiCommandButton x:Name="MultiEnable"
                                 CommandParameter="Multi Target">
 
-            ^^^Multi Target Toggle Enabled^^^
+                ^^^Multi Target Toggle Enabled^^^
 
-            <ctb:MultiCommandButton.Command>
-                <ctb:MultiTargetCommand
+                <ctb:MultiCommandButton.Command>
+                    <ctb:MultiTargetCommand
                     Command="{x:Static ctb:MultiCommands.OutputToggleEnabled}">
-                    <ctb:CommandTarget Target="{Binding ElementName=Button1}" />
-                    <ctb:CommandTarget Target="{Binding ElementName=Button2}" />
-                </ctb:MultiTargetCommand>
-            </ctb:MultiCommandButton.Command>
+                        <ctb:CommandTarget Target="{Binding ElementName=Button1}" />
+                        <ctb:CommandTarget Target="{Binding ElementName=Button2}" />
+                    </ctb:MultiTargetCommand>
+                </ctb:MultiCommandButton.Command>
 
-        </ctb:MultiCommandButton>
+            </ctb:MultiCommandButton>
 
-        <Button Click="ChangeMultiCommand_OnClick">Cycle Command</Button>
-
+            <Button Click="ChangeMultiCommand_OnClick">Cycle Command</Button>
+        </StackPanel>
     </StackPanel>
 </Window>

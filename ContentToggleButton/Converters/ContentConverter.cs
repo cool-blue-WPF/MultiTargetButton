@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -13,18 +13,20 @@ namespace ContentToggleButton.Converters
 		{
 			try
 			{
-				var ic = values[0] as IContent;
-				var content = ic == null ? null : ic.Content;
-				if(ic == null || content != null) return content;
-				var options = ic.Options;
+				var content = values[0];
+				if(content != null) return content;
 
-				return ic.IsChecked ?? true 
+				var options = values[1] as IList<string>;
+				if (options == null) return DependencyProperty.UnsetValue.ToString();
+
+				var isChecked = values[2] as bool?;
+
+				return isChecked ?? true 
 					? options[0] ?? DependencyProperty.UnsetValue.ToString()
 					: options[1] ?? DependencyProperty.UnsetValue.ToString();
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine(e);
 				return DependencyProperty.UnsetValue.ToString();
 			}
 		}

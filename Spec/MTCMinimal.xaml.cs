@@ -38,6 +38,7 @@ namespace Spec
 						await Task.Run(() =>
 						{
 							var source = s as FrameworkElement;
+							if (source == null) return;
 							var elementName = "null";
 							source.Dispatcher.Invoke(() =>
 								elementName = source.Name

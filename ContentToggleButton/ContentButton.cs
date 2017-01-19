@@ -120,13 +120,14 @@ namespace ContentToggleButton
 
 		#endregion
 
-		#region Constructors
+		#region Constructers
 
 		static ContentButton ()
 		{
 			DefaultStyleKeyProperty.OverrideMetadata(typeof(ContentButton),
 			   new FrameworkPropertyMetadata(typeof(ContentButton)));
 		}
+
 		#endregion
 	}
 }

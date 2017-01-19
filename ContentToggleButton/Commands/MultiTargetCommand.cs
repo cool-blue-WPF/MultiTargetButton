@@ -37,6 +37,8 @@ namespace ContentToggleButton
 
 		#endregion
 
+		private UIElement FosterParent = new UIElement();
+
 		#region ICommandSource
 
 		//todo make a bindable command class and use that for the command property
@@ -48,9 +50,18 @@ namespace ContentToggleButton
 
 		public IInputElement CommandTarget
 		{
-			get { throw new NotImplementedException(); }
+			get { return null; }
 		}
 
 		#endregion
+
+		public MultiTargetCommand()
+		{
+		}
+
+		#region constructor
+
+#endregion
+
 	}
 }

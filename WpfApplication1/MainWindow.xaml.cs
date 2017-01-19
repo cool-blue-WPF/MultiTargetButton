@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using SelectorEngine;
@@ -54,6 +56,14 @@ namespace WpfApplication1
 			{
 				MultiEnable.CommandTarget = Button1;
 			}
+		}
+
+		private void Sealed_OnClick(object sender, RoutedEventArgs e)
+		{
+			Button btn = e.OriginalSource as Button;
+			var win = (Window)System.Windows.Application.LoadComponent(
+				new Uri(btn.Name.Replace("_", "/") + ".xaml", UriKind.Relative));
+			win.Show();
 		}
 	}
 }
