@@ -11,6 +11,7 @@
         <Button Name="MTCMinimal">Minimal MultiTarget Command</Button>
         <Button Name="Plain_MTCComplex">Plain MultiTarget Command</Button>
         <Button Name="Plain_MTCMinimal">Plain Minimal Behaviour Fail</Button>
+        <Button Name="Plain_ToolBarTest">ToolBar Test</Button>
 
     </ListBox>
 </Window>

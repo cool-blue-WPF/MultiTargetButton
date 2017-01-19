@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -38,9 +37,9 @@ namespace ContentToggleButton
 
 		public static readonly DependencyProperty StyleSettersProperty =
 			DependencyProperty.RegisterAttached(
-				"StyleSetters", typeof(MyStyleSetters),
+				"StyleSetters", typeof(SetterBaseCollection),
 				typeof(Behaviours),
-				new PropertyMetadata(default(MyStyleSetters),
+				new PropertyMetadata(default(SetterBaseCollection),
 					ButtonSettersChanged));
 
 		private static void ButtonSettersChanged (DependencyObject d,
@@ -70,15 +69,15 @@ namespace ContentToggleButton
 		}
 
 		public static void SetStyleSetters(DependencyObject element,
-			MyStyleSetters value)
+			SetterBaseCollection value)
 		{
 			element.SetValue(StyleSettersProperty, value);
 		}
 
-		public static MyStyleSetters GetStyleSetters (
+		public static SetterBaseCollection GetStyleSetters (
 			DependencyObject element)
 		{
-			return (MyStyleSetters)element
+			return (SetterBaseCollection)element
 				.GetValue(StyleSettersProperty);
 		}
 
@@ -124,12 +123,4 @@ namespace ContentToggleButton
 		}
 	}
 
-	public class MyStyleSetters : List<SetterBase>
-	{
-	}
-
-	public class TestList : List<string>
-	{
-		
-	}
 }

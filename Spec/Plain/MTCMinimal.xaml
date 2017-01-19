@@ -6,9 +6,9 @@
         Title="MTCMinimal" Height="300" Width="300">
 
     <Window.Resources>
-        <local:MyStyleSetters x:Key="ButtonStyleSetters">
+        <SetterBaseCollection x:Key="ButtonStyleSetters">
             <EventSetter Event="ButtonBase.Click" Handler="StyleClick" />
-        </local:MyStyleSetters>
+        </SetterBaseCollection>
     </Window.Resources>
 
     <Button Name="Button1"
