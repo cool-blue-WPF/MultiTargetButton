@@ -79,6 +79,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plain\EventSetterMinimal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Plain\ToolBarTest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -102,6 +106,9 @@
     <Compile Include="ContentButton.xaml.cs">
       <DependentUpon>ContentButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plain\EventSetterMinimal.xaml.cs">
+      <DependentUpon>EventSetterMinimal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Plain\ToolBarTest.xaml.cs">
       <DependentUpon>ToolBarTest.xaml</DependentUpon>
     </Compile>
@@ -118,14 +125,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Plain\MTCMinimal.xaml">
+    <Page Include="Plain\StylesBehaviourMinimal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Plain\MTCMinimal.xaml.cs">
-      <DependentUpon>MTCMinimal.xaml</DependentUpon>
+    <Compile Include="Plain\StylesBehaviourMinimal.xaml.cs">
+      <DependentUpon>StylesBehaviourMinimal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

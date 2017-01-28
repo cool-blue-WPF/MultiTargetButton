@@ -8,10 +8,10 @@
 
         <Button Name="MTCComplex">MultiTarget Command</Button>
         <Button Name="ContentButton">Content Button</Button>
-        <Button Name="MTCMinimal">Minimal MultiTarget Command</Button>
+        <Button Name="StylesBehaviourMinimal">Minimal Styles Behaviour</Button>
         <Button Name="Plain_MTCComplex">Plain MultiTarget Command</Button>
         <Button Name="Plain_MTCMinimal">Plain Minimal Behaviour Fail</Button>
-        <Button Name="Plain_ToolBarTest">ToolBar Test</Button>
+        <Button Name="Plain_EventSetterMinimal">EventSetter Test</Button>
 
     </ListBox>
 </Window>

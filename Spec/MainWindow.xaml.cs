@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,6 +23,11 @@ namespace Spec
 			var win = (Window)System.Windows.Application.LoadComponent(
 				new Uri(btn.Name.Replace("_", "/") + ".xaml", UriKind.Relative));
 			win.Show();
+		}
+
+		public void debugHit(object arg)
+		{
+			Debug.WriteLine(arg.ToString());
 		}
 	}
 }

@@ -28,13 +28,13 @@
         </Style>
         <Style TargetType="{x:Type b:ContentButton}"
                BasedOn="{StaticResource BaseStyle}">
-            <EventSetter Event="Click" Handler="StyleClick" />
+            <EventSetter Event="Button.Click" Handler="StyleClick" />
             <Setter Property="Height" Value="{StaticResource ButtonHeight}"></Setter>
             <Setter Property="Margin" Value="{StaticResource ButtonMargin}"></Setter>
         </Style>
         <Style TargetType="{x:Type b:ContentToggle}"
                BasedOn="{StaticResource BaseStyle}">
-            <EventSetter Event="Click" Handler="StyleClick" />
+            <EventSetter Event="Button.Click" Handler="StyleClick" />
             <Setter Property="Height" Value="{StaticResource ButtonHeight}"></Setter>
             <Setter Property="Margin" Value="{StaticResource ButtonMargin}"></Setter>
         </Style>
@@ -168,8 +168,10 @@
                 </Grid>
             </UniformGrid>
 
+            <!-- todo find out why this button is dissabled. Looks like its in ContentButton-->
             <b:ContentButton x:Name="DefPlain" 
-                             VerticalContentAlignment="Center">
+                             VerticalContentAlignment="Center"
+                             >
 
                 <b:ContentButton.CommandBindings>
                     <b:OutputToggleEnabledBind />

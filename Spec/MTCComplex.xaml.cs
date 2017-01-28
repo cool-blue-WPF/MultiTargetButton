@@ -55,7 +55,7 @@ namespace Spec
 			Log.Text += String.Format(
 				"{4} from {0}\n\tRouted Event {1}\n\tSourced from {2} : {3}\n",
 				o.GetType().Name, e.RoutedEvent, e.Source.GetType().Name, 
-				((FrameworkElement)e.Source).Name, receiver);
+				((FrameworkElement)o).Name, receiver);
 			Log.ScrollToEnd();
 		}
 

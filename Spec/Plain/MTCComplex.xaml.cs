@@ -48,9 +48,9 @@ namespace Spec.Plain
 		{
 			//return;
 			Log.Text += String.Format(
-				"{4} from {0}\n\tRouted Event {1}\n\tSourced from {2} : {3}\n",
-				o.GetType().Name, e.RoutedEvent, e.Source.GetType().Name, 
-				((FrameworkElement)e.Source).Name, receiver);
+				"{4} from element {0}\n\tRouted Event {1}\n\tSourced from {2} : {3}\n\tSourced from {5}\n",
+				o.GetType().Name, e.RoutedEvent, e.Source.GetType().Name,
+				((FrameworkElement)o).Name, receiver, ((FrameworkElement)e.Source).Name);
 			Log.ScrollToEnd();
 		}
 
